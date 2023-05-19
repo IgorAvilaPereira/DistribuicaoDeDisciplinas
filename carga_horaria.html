@@ -95,7 +95,8 @@
                         html_professor += "<option value='" + professor + "' " + ((professor == vetDisciplina[index].professor) ? "selected" : "") + ">" + professor + "</option>";
                     }
                     html_professor += "</select>";
-                    html += "<tr> <td>" + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
+                    html += "<tr id=\"linha_"+index+"\"> <td>" + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
+                   
                 }                
                 html += "</table>";
                 document.getElementById("sistema").innerHTML = "";
