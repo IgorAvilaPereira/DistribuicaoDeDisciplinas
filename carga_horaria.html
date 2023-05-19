@@ -81,11 +81,11 @@
                     html_professor = "";
                     html_professor = "<select id='" + index + "' onchange='computa()'>";
                     html_professor += "<option value=''> </option>";
-                    for (var professor in cargaHorariaPorProfessor) {                        
-                        html_professor += "<option value='" + professor + "' "+((professor == vetDisciplina[index].professor) ? "selected" : "")+">" + professor + "</option>";
+                    for (var professor in cargaHorariaPorProfessor) {
+                        html_professor += "<option value='" + professor + "' " + ((professor == vetDisciplina[index].professor) ? "selected" : "") + ">" + professor + "</option>";
                     }
                     html_professor += "</select>";
-                    html += "<tr> <td>" + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";                    
+                    html += "<tr> <td>" + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
                 }
                 html += "</table>";
                 document.getElementById("sistema").innerHTML = "";
@@ -207,10 +207,10 @@
                     "nome": novo_nome,
                     "creditos": creditos,
                     "duracaoPorCredito": duracao,
-                    "professor":"PENDENTE"
+                    "professor": "PENDENTE"
                 }
                 vetDisciplina.push(disciplina);
-                localStorage.setItem("vetDisciplina",JSON.stringify(vetDisciplina));
+                localStorage.setItem("vetDisciplina", JSON.stringify(vetDisciplina));
 
 
                 var table = document.getElementById('delegacao');
