@@ -54,7 +54,15 @@
                 html += "<table id='tab_carga' border='1'>";
                 for (var professor in cargaHorariaPorProfessor) {
                     total = cargaHorariaPorProfessor[professor];
-                    html += "<tr> <td>" + professor + "</td><td>" + converter(total) + "</td> </tr>";
+                    html += "<tr> <td>" + professor + "</td><td>" + converter(total) + "</td>";                    
+                    qtde = 0;
+                    for (let index = 0; index < JSON.parse(localStorage.getItem("vetDisciplina")).length; index++) {                
+                        if (JSON.parse(localStorage.getItem("vetDisciplina"))[index].professor == professor) {
+                            qtde++;        
+                        }                                 
+                    }        
+                    html+="<td>"+qtde+"</td>";
+                    html+="</tr>";                    
                 }
                 html += "</table><button onclick='exportar()'> Exportar CSV </button>";
                 // html += "</table><button onclick='salvar()'> Salvar (localStorage) </button>";
@@ -132,7 +140,6 @@
             var csv = "";
             for (let index = 0; index < vetDisciplina.length; index++) {
                 csv += vetDisciplina[index].nome + ";" + ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE") + ";<br>";
-
             }
             for (var professor in cargaHorariaPorProfessor) {
                 csv += professor + ";" + converter(cargaHorariaPorProfessor[professor]) + ";<br>";
@@ -167,10 +174,19 @@
 
         function atualizarCargaPorProfessor() {
             var html = "<h2> Novo Professor </h2> Nome: <input type='text' id='novo_professor'><br><button onclick='adicionarNovoProfessor()'>Adicionar</button><br><br>";
+            var qtde = 0;
             html += "<table id='tab_carga' border='1'>";
             for (var professor in cargaHorariaPorProfessor) {
                 var total = cargaHorariaPorProfessor[professor];
-                html += "<tr> <td>" + professor + "</td><td>" + converter(total) + "</td> </tr>";
+                html += "<tr> <td>" + professor + "</td><td>" + converter(total) + "</td>";
+                qtde = 0;
+                for (let index = 0; index < vetDisciplina.length; index++) {                
+                    if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() == professor) {
+                        qtde++;        
+                    }                                 
+                }        
+                html+="<td>"+qtde+"</td>";
+                html+="</tr>";
             }
             html += "</table><button onclick='exportar()'> Exportar CSV </button>";
             // html += "</table><button onclick='salvar()'> Salvar (localStorage) </button>";
