@@ -158,6 +158,7 @@
                     opt.innerHTML = novo_professor;
                     select.appendChild(opt);
                 }
+                document.getElementById('novo_professor').value = "";
             } else {
                 alert('preencha com um nome valido (unico)');
             }
@@ -230,6 +231,12 @@
                 html_professor += "</select>";
 
                 cell2.innerHTML = html_professor;
+
+
+                document.getElementById('novo_nome').value =  "";
+                document.getElementById('novo_creditos').value =  "";
+                document.getElementById('novo_duracao').value = "";
+
             } else {
                 alert("Preenha todos os campos!! Creditos e duração devem ser > 0");
             }
@@ -287,26 +294,26 @@
             <td>
                 <!-- <h2 id="label_professores">Professores:</h2> -->
                 <textarea id="vetProfessor" rows="50" cols="15">
-igor
-cibele
-cleber
-eduardo
-luciano
-marcio
-raquel
-tiago
-vinicius
-mairon
-rafael
-flavia
-luis
-marcia
-lucia
-cleiton
-denise
-bolivar
-javier
-OUTROS
+                    betito
+                    bolivar
+                    cibele
+                    cleber
+                    cleiton
+                    denise
+                    eduardo
+                    flavia
+                    igor
+                    javier
+                    lucia
+                    luciano
+                    luis
+                    mairon
+                    marcia
+                    marcio
+                    raquel
+                    telecken
+                    vinicius
+                    OUTROS
                 </textarea>
             </td>
             <td>
@@ -348,10 +355,11 @@ Tópicos em Desenvolvimento de Sistemas,2,50
 Tópicos em Desenvolvimento de Aplicativos,2,50
 Tópicos em Análise de Sistemas,2,50
 Tópicos em Bancos de Dados,2,50
-Lógica de Programação,4,60
-Fundamentos da Computação,2,60
-Desenvolvimento Baseado em Objetos,2,60
-Bancos de Dados,4,60
+Lógica de Programação,4,50
+Fundamentos da Computação,2,50
+Programação WEB e Front End,5,50
+Bancos de Dados (2º ano),3,50
+Bancos de Dados (3º ano),4,60
 Engenharia de Software,3,60
 Desenvolvimento de Sistemas I,4,60
 Desenvolvimento de Sistemas II,4,60
