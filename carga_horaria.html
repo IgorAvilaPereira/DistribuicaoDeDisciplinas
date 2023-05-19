@@ -167,8 +167,20 @@
             wnd.document.write(csv);
         }
 
+        function naoExisteProfessor(nome){
+            if (nome != "") {
+                for (var professor in cargaHorariaPorProfessor) {
+                    if (professor == nome){
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;            
+        }
+
         function adicionarNovoProfessor() {
-            if (document.getElementById('novo_professor').value != "") {
+            if (document.getElementById('novo_professor').value != "" && naoExisteProfessor(document.getElementById('novo_professor').value)) {
                 var novo_professor = document.getElementById('novo_professor').value;
                 cargaHorariaPorProfessor[novo_professor] = 0;
                 var table = document.getElementById('tab_carga');
@@ -187,7 +199,7 @@
                 }
                 document.getElementById('novo_professor').value = "";
             } else {
-                alert('preencha com um nome valido (unico)');
+                alert('nome não pode ser em branco e deve ser único');
             }
 
         }
@@ -237,12 +249,27 @@
             atualizarCargaPorProfessor();
         }
 
+        function naoExisteDisciplina(novo_nome){
+            if (novo_nome != ""){
+                for (let index = 0; index < vetDisciplina.length; index++) {    
+                    if (vetDisciplina[index] != undefined) {
+                        if (vetDisciplina[index].nome == novo_nome){
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            return false;
+            
+        }
+
         function adicionarNovaDisciplina() {
             var novo_nome = document.getElementById('novo_nome').value;
             var creditos = parseInt(document.getElementById('novo_creditos').value);
             var duracao = parseInt(document.getElementById('novo_duracao').value);
 
-            if (novo_nome != "" && creditos > 0 && duracao > 0) {
+            if (novo_nome != "" && creditos > 0 && duracao > 0 && naoExisteDisciplina(novo_nome)) {
 
                 let disciplina = {
                     "nome": novo_nome,
@@ -269,10 +296,7 @@
                     html_professor += "<option value='" + professor + "'>" + professor + "</option>";
                 }
                 html_professor += "</select>";
-
                 cell2.innerHTML = html_professor;
-
-
                 document.getElementById('novo_nome').value =  "";
                 document.getElementById('novo_creditos').value =  "";
                 document.getElementById('novo_duracao').value = "";
