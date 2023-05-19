@@ -116,13 +116,15 @@
         function salvar() {
             var vetDisciplinaAux = [];
             for (let index = 0; index < vetDisciplina.length; index++) {
-                let disciplina = {
-                    "nome": vetDisciplina[index].nome,
-                    "creditos": vetDisciplina[index].creditos,
-                    "duracaoPorCredito": vetDisciplina[index].duracaoPorCredito,
-                    "professor": ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE")
+                if (vetDisciplina[index] != undefined){
+                    let disciplina = {
+                        "nome": vetDisciplina[index].nome,
+                        "creditos": vetDisciplina[index].creditos,
+                        "duracaoPorCredito": vetDisciplina[index].duracaoPorCredito,
+                        "professor": ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE")
+                    }
+                    vetDisciplinaAux.push(disciplina);
                 }
-                vetDisciplinaAux.push(disciplina);
             }
             localStorage.setItem("vetDisciplina", JSON.stringify(vetDisciplinaAux));
 
