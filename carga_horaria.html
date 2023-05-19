@@ -50,7 +50,7 @@
                 for (let index = 0; index < cargaHorariaPorProfessorAux.length; index++) {
                     cargaHorariaPorProfessor[cargaHorariaPorProfessorAux[index].nome] = parseInt(cargaHorariaPorProfessorAux[index].carga);
                 }
-                html = "<input type='text' id='novo_professor'><button onclick='adicionarNovoProfessor()'>Adicionar</button><br><br>";
+                html = "<input type='text' id='novo_professor'><button onclick='adicionarNovoProfessor()'>Adicionar</button><br>";
                 html += "<table id='tab_carga' border='1'>";
                 for (var professor in cargaHorariaPorProfessor) {
                     total = cargaHorariaPorProfessor[professor];
@@ -74,7 +74,7 @@
                     vetDisciplina.push(disciplina);
                 }
                 html = "";
-                html = "<input type='text' id='novo_nome'><input type='number' id='novo_creditos'><input type='number' id='novo_duracao'><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
+                html = "<input type='text' id='novo_nome'><input type='number' id='novo_creditos'><input type='number' id='novo_duracao'><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
                 html += "<table id='delegacao' border='1'>";
                 var html_professor = "";
                 for (let index = 0; index < vetDisciplina.length; index++) {
@@ -165,7 +165,7 @@
         }
 
         function atualizarCargaPorProfessor() {
-            var html = "<input type='text' id='novo_professor'><button onclick='adicionarNovoProfessor()'>Adicionar</button><br><br>";
+            var html = "<h2> Novo Professor </h2> Nome: <input type='text' id='novo_professor'><br><button onclick='adicionarNovoProfessor()'>Adicionar</button><br><br>";
             html += "<table id='tab_carga' border='1'>";
             for (var professor in cargaHorariaPorProfessor) {
                 var total = cargaHorariaPorProfessor[professor];
@@ -253,7 +253,7 @@
                 vetDisciplina.push(disciplina);
             }
 
-            var html = "<input type='text' id='novo_nome'><input type='number' id='novo_creditos'><input type='number' id='novo_duracao'><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
+            var html = "<h3> Nova Disciplinha </h3> Nome:<input type='text' id='novo_nome'><br>Qtde de Créditos:<input type='number' id='novo_creditos'><br>Tempo (min.) p/ crédito:<input type='number' id='novo_duracao'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
 
             html += "<table id='delegacao' border='1'>";
             var html_professor2 = "";
@@ -297,6 +297,14 @@ tiago
 vinicius
 mairon
 rafael
+flavia
+luis
+marcia
+lucia
+cleiton
+denise
+bolivar
+javier
 OUTROS
                 </textarea>
             </td>
