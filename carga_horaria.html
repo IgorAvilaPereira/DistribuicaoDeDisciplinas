@@ -97,7 +97,7 @@
                     html_professor += "</select>";
                     html += "<tr> <td>" + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
                 }                
-                html += "</table><button onclick='exportar()'> Exportar CSV </button>";
+                html += "</table>";
                 document.getElementById("sistema").innerHTML = "";
                 document.getElementById("sistema").innerHTML = html;
                 document.getElementById("formato_professor").style = "display: none;";
@@ -413,11 +413,9 @@ Desenvolvimento de Sistemas II,4,60
         <!-- <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button> -->
         <!-- </td>
         </tr> -->
-    </table>
-    <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
+    </table>    
     <button id="btn_restaurar" onclick="restaurar()">Restaurar Histórico</button>
     <button id="btn_apagar" onclick="apagar()">Apagar Histórico</button>
-
+    <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
 </body>
-
 </html>
