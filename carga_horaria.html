@@ -188,11 +188,11 @@
             cargaHorariaPorProfessor = [];
             cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
 
-            for (let index = 0; index < vetDisciplina.length; index++) {
+            for (let index = 0; index < vetDisciplina.length; index++) {                
                 if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != "") {
                     cargaHorariaPorProfessor[document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim()] +=
                         vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
-                }
+                }                
             }
             atualizarCargaPorProfessor();
         }
@@ -242,6 +242,18 @@
             }
         }
 
+        /*
+        function removerDisciplina(nome, index){
+            var professorDaDisciplina = ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE");
+            if (professorDaDisciplina !== 'PENDENTE'){
+                cargaHorariaPorProfessor[professorDaDisciplina]-= vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
+                atualizarCargaPorProfessor();
+            }                                   
+            var table = document.getElementById('delegacao');
+            var row = table.deleteRow(index);
+            vetDisciplina.splice(index, 1);
+        }*/
+
         function carregar() {
             var html_professor1 = "<option value=''> </option>";
             var array = document.getElementById("vetProfessor").value.split("\n");
@@ -253,7 +265,7 @@
             for (let index = 0; index < array.length - 1; index++) {
                 var aux = array[index].split(SEPARADOR);
                 let disciplina = {
-                    "nome": aux[0],
+                    "nome": aux[0].trim(),
                     "creditos": parseInt(aux[1]),
                     "duracaoPorCredito": parseInt(aux[2])
                 }
@@ -266,7 +278,7 @@
             var html_professor2 = "";
             for (let index = 0; index < vetDisciplina.length; index++) {
                 html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                html += "<tr> <td>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                html += "<tr id=\"linha_"+index+"\"> <td> <!--<button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> --> " + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
                 html_professor2 = "";
             }
             html += "</table>";
