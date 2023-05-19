@@ -139,11 +139,18 @@
         function exportar() {
             var wnd = window.open("about:blank", "", "_blank");
             var csv = "";
+            var qtde = 0;
             for (let index = 0; index < vetDisciplina.length; index++) {
                 csv += vetDisciplina[index].nome + ";" + ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE") + ";<br>";
             }
             for (var professor in cargaHorariaPorProfessor) {
-                csv += professor + ";" + converter(cargaHorariaPorProfessor[professor]) + ";<br>";
+                qtde = 0;
+                for (let index = 0; index < vetDisciplina.length; index++) {
+                    if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() == professor) {
+                        qtde++;
+                    }
+                }
+                csv += professor + ";" + converter(cargaHorariaPorProfessor[professor]) + ";"+qtde+";<br>";
             }
             wnd.document.write(csv);
         }
