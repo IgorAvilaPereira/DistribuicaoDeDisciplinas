@@ -13,6 +13,14 @@
             font-family: Arial, Helvetica, sans-serif;
             /* font-family: 'Open Sans'; */
         }
+
+        /* button { */
+            /* border-radius: 10px; */
+            /* background-color: rgb(218, 232, 252);
+            border: 3px rgb(116, 135, 182) solid;
+            text-align: center;            
+        } */
+
         table td,
         table td * {
             vertical-align: top;
@@ -311,9 +319,9 @@
         if(row) {
             row.remove();
         }
-        else {
+        /*else {
             alert("Please Enter Correct Row Id!");
-        }
+        }*/
     }
         
         function removerDisciplina(nome, index){
@@ -376,10 +384,12 @@
 </head>
 
 <body>
-    <!-- <h1>Disciplinas do Semestre</h1> -->
+    <h1>Distribuição de Disciplinas</h1>
     <h2 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)<br></h2>
     <h2 id="formato_professor">Formato Professor: Usar nomes únicos<br></h2>
-    <!-- <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button> <br> -->
+    <button id="btn_restaurar" onclick="restaurar()">Restaurar Histórico</button>
+    <button id="btn_apagar" onclick="apagar()">Apagar Histórico</button>
+    <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
     <table>
         <tr>
             <td>
@@ -466,6 +476,7 @@ Desenvolvimento de Sistemas II*,4,60
             <td id="sistema">
 
             </td>
+            <td style="width: 20px;"></td>
             <td id="tabela">
 
             </td>
@@ -476,8 +487,8 @@ Desenvolvimento de Sistemas II*,4,60
         <!-- </td>
         </tr> -->
     </table>    
-    <button id="btn_restaurar" onclick="restaurar()">Restaurar Histórico</button>
+    <!-- <button id="btn_restaurar" onclick="restaurar()">Restaurar Histórico</button>
     <button id="btn_apagar" onclick="apagar()">Apagar Histórico</button>
-    <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
+    <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button> -->
 </body>
 </html>
