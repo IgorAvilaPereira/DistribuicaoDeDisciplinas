@@ -325,18 +325,21 @@
     }
         
         function removerDisciplina(nome, index){
-            var professorDaDisciplina = ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE");
-            if (professorDaDisciplina !== 'PENDENTE'){
-                cargaHorariaPorProfessor[professorDaDisciplina]-= vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;                
-            }                                   
-            // var table = document.getElementById('delegacao');
-            // var row = table.deleteRow(index);
-            // var row = document.getElementById("linha_"+index);
-            // row.parentNode.removeChild(row);
-            deleteRow("linha_"+index);
-            vetDisciplina[index] = undefined;
-            atualizarCargaPorProfessor();
-            salvar();
+            var resposta = confirm("Você tem certeza?");
+            if (resposta == true){
+                var professorDaDisciplina = ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE");
+                if (professorDaDisciplina !== 'PENDENTE'){
+                    cargaHorariaPorProfessor[professorDaDisciplina]-= vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;                
+                }                                   
+                // var table = document.getElementById('delegacao');
+                // var row = table.deleteRow(index);
+                // var row = document.getElementById("linha_"+index);
+                // row.parentNode.removeChild(row);
+                deleteRow("linha_"+index);
+                vetDisciplina[index] = undefined;
+                atualizarCargaPorProfessor();
+                salvar();
+            }
         }
 
         function carregar() {
