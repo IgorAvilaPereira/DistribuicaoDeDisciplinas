@@ -82,7 +82,7 @@
                 html += "<table id='tab_carga' border='1'>";
                 for (var professor in cargaHorariaPorProfessor) {
                     total = cargaHorariaPorProfessor[professor];
-                    html += "<tr> <td> <button onclick=\"visualizarProfessor('"+professor.trim()+"')\"> visualizar  </button> " + professor + "</td><td>" + converter(total) + "</td>";                    
+                    html += "<tr> <td> <button onclick=\"visualizarProfessor('"+professor.trim()+"')\"> visualizar  </button> <!--<button onclick=\"removerProfessor('"+professor.trim()+"')\"> remover  </button> --> " + professor + "</td><td>" + converter(total) + "</td>";                    
                     qtde = 0;
                     for (let index = 0; index < JSON.parse(localStorage.getItem("vetDisciplina")).length; index++) {                
                         if(JSON.parse(localStorage.getItem("vetDisciplina"))[index] != undefined){
@@ -192,6 +192,7 @@
                 csv += professor + ";" + converter(cargaHorariaPorProfessor[professor]) + ";"+qtde+";<br>";
             }
             wnd.document.write(csv);
+            computa();
         }
 
         function naoExisteProfessor(nome){
@@ -245,7 +246,7 @@
             html += "<table id='tab_carga' border='1'>";
             for (var professor in cargaHorariaPorProfessor) {
                 var total = cargaHorariaPorProfessor[professor];
-                html += "<tr> <td> <button onclick=\"visualizarProfessor('"+professor.trim()+"')\"> visualizar  </button> " + professor + "</td><td>" + converter(total) + "</td>";
+                html += "<tr> <td> <button onclick=\"visualizarProfessor('"+professor.trim()+"')\"> visualizar  </button>  <!-- <button onclick=\"removerProfessor('"+professor.trim()+"')\"> remover  </button> -->" + professor + "</td><td>" + converter(total) + "</td>";
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {                
                     if (vetDisciplina[index] != undefined && document.getElementById(index) != undefined) {
@@ -399,6 +400,18 @@
             alert("Please Enter Correct Row Id!");
         }*/
     }
+
+    // function removerProfessor(nome){
+    //     for (let index = 0; index < vetDisciplina.length; index++) {    
+    //         if (vetDisciplina[index] != undefined) {
+    //             if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() == nome.trim()){
+    //                 document.getElementById(index).value = '';
+    //             }
+    //         }        
+    //     }
+    //     cargaHorariaPorProfessor[nome] = undefined;
+    //     computa();
+    // }
         
         function removerDisciplina(nome, index){
             var resposta = confirm("Você tem certeza?");
