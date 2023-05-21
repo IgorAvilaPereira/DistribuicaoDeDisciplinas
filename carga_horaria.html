@@ -51,15 +51,20 @@
 
         function visualizarProfessor(professor){
             var conteudo = "Professor(a):"+professor+"\n";
+            var qtde = 0;
             for (let index = 0; index < vetDisciplina.length; index++) {                
-                if(vetDisciplina[index] != undefined){
-                    if (vetDisciplina[index].professor == professor) {
-                        conteudo += vetDisciplina[index].nome+"\n";
+                if(vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined){
+                    if (vetDisciplina[index].professor.trim() == professor.trim()) {
                         qtde++;        
+                        conteudo += vetDisciplina[index].nome+"\n";                        
                     }
                 }                                 
-            }        
-            alert(conteudo+"Qtde:"+qtde);
+            }    
+            if (qte > 0)  {
+                alert(conteudo+"Qtde:"+qtde);
+            } else {
+                alert(conteudo);
+            }
         }
 
         function restaurar() {
@@ -436,7 +441,7 @@
             }
             html += "</table>";
 
-            document.getElementById("sistema").innerHTML = html;
+            document.getElementById("sistema").innerHTML = html;            
             document.getElementById("formato_professor").style = "display: none;";
             document.getElementById("formato_disciplina").style = "display: none;";
             document.getElementById("vetProfessor").style = "display: none;";
