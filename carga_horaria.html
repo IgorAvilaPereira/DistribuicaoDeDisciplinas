@@ -49,6 +49,19 @@
             alert("Histórico Removido");
         }
 
+        function visualizarProfessor(professor){
+            var conteudo = "Professor(a):"+professor+"\n";
+            for (let index = 0; index < vetDisciplina.length; index++) {                
+                if(vetDisciplina[index] != undefined){
+                    if (vetDisciplina[index].professor == professor) {
+                        conteudo += vetDisciplina[index].nome+"\n";
+                        qtde++;        
+                    }
+                }                                 
+            }        
+            alert(conteudo+"Qtde:"+qtde);
+        }
+
         function restaurar() {
             var html = "";
             var total = 0;
@@ -63,7 +76,7 @@
                 html += "<table id='tab_carga' border='1'>";
                 for (var professor in cargaHorariaPorProfessor) {
                     total = cargaHorariaPorProfessor[professor];
-                    html += "<tr> <td>" + professor + "</td><td>" + converter(total) + "</td>";                    
+                    html += "<tr> <td> <button onclick=\"visualizarProfessor('"+professor.trim()+"')\"> visualizar  </button> " + professor + "</td><td>" + converter(total) + "</td>";                    
                     qtde = 0;
                     for (let index = 0; index < JSON.parse(localStorage.getItem("vetDisciplina")).length; index++) {                
                         if(JSON.parse(localStorage.getItem("vetDisciplina"))[index] != undefined){
@@ -218,7 +231,7 @@
             html += "<table id='tab_carga' border='1'>";
             for (var professor in cargaHorariaPorProfessor) {
                 var total = cargaHorariaPorProfessor[professor];
-                html += "<tr> <td>" + professor + "</td><td>" + converter(total) + "</td>";
+                html += "<tr> <td> <button onclick=\"visualizarProfessor('"+professor.trim()+"')\"> visualizar  </button> " + professor + "</td><td>" + converter(total) + "</td>";
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {                
                     if (vetDisciplina[index] != undefined && document.getElementById(index) != undefined) {
