@@ -108,7 +108,7 @@
                             html_professor += "<option value='" + professor + "' " + ((professor == vetDisciplina[index].professor) ? "selected" : "") + ">" + professor + "</option>";
                         }
                         html_professor += "</select>";
-                        html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> <button onclick=\"editarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> editar  </button> " + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
+                        html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> <button onclick=\"editarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> editar  </button> <button onclick=\"visualizarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
                     } 
                 }                
                 html += "</table>";
@@ -286,6 +286,10 @@
             return false;
         }
 
+        function visualizarDisciplina(nome, index){
+            var conteudo = vetDisciplina[index].nome+"\nQtde de créditos:"+vetDisciplina[index].creditos+"\n"+"Tempo p/ crédito:"+vetDisciplina[index].duracaoPorCredito+"\nProfessor:"+vetDisciplina[index].professor;
+            alert(conteudo);
+        }
 
         function editarDisciplina(nome, index){
             var novo_nome = prompt("Novo nome:", vetDisciplina[index].nome);                        
@@ -342,7 +346,7 @@
                 // var row = table.insertRow(0);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);                
-                cell1.innerHTML = "<button onclick=\"removerDisciplina('"+disciplina.nome+"',"+parseInt(vetDisciplina.length-1)+")\"> excluir </button> <button onclick=\"editarDisciplina('"+disciplina.nome+"',"+parseInt(vetDisciplina.length-1)+")\"> editar </button> "+disciplina.nome;
+                cell1.innerHTML = "<button onclick=\"removerDisciplina('"+disciplina.nome+"',"+parseInt(vetDisciplina.length-1)+")\"> excluir </button> <button onclick=\"editarDisciplina('"+disciplina.nome+"',"+parseInt(vetDisciplina.length-1)+")\"> editar </button> <button onclick=\"visualizarDisciplina('"+disciplina.nome+"',"+parseInt(vetDisciplina.length-1)+")\"> visualizar </button> "+disciplina.nome;
                 var html_professor = "<select id='" + parseInt(vetDisciplina.length - 1) + "' onchange='computa()'> ";
                 html_professor += "<option value=''> </option>";
                 for (var professor in cargaHorariaPorProfessor) {
@@ -413,7 +417,7 @@
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined){
                     html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                    html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> <button onclick=\"editarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> editar  </button> " + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                    html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> <button onclick=\"editarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> editar  </button> <button onclick=\"visualizarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
                     html_professor2 = "";
                 }                
             }
