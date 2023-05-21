@@ -289,8 +289,12 @@
 
         function editarDisciplina(nome, index){
             var novo_nome = prompt("Novo nome:", vetDisciplina[index].nome);
+            if (novo_nome == false) return false;
             var creditos = parseInt(prompt("Qtde de creditos:", vetDisciplina[index].creditos));
+            if (creditos == false) return false;
             var duracaoPorCredito = parseInt(prompt("Tempo p/ créditos:", vetDisciplina[index].duracaoPorCredito));
+            if (duracaoPorCredito == false) return false;
+            
             if (novo_nome != "" && creditos > 0 && duracaoPorCredito > 0 && naoExisteDisciplinaEditar(novo_nome, index)) {         
                 var professorDaDisciplina = ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE");
                 if (professorDaDisciplina !== 'PENDENTE'){
@@ -303,10 +307,12 @@
                 vetDisciplina[index].creditos = creditos;                    
                 vetDisciplina[index].duracaoPorCredito = duracaoPorCredito;                    
                 vetDisciplina[index].professor = professorDaDisciplina;
-                salvar();   
+                salvar();  
+                return true; 
             } else {
                 alert("O nome deve ser único com créditos e duração > 0");
             }        
+            return false;
         }
 
         function adicionarNovaDisciplina() {
