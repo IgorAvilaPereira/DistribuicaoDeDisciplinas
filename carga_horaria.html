@@ -437,9 +437,13 @@
             /*
             if (localStorage.getItem("cargaHorariaPorProfessor") != undefined && localStorage.getItem("vetDisciplina") != undefined) {
                 var resposta = prompt("Há uma redistribuição salva. Deseja restaurá-la", "sim");
+                if (resposta == "sim"){
+                    restaurar();
+                } else {
+                    apagar();
+                }
             }
             */
-
             var html_professor1 = "<option value=''> </option>";
             var array = document.getElementById("vetProfessor").value.split("\n");
             for (let index = 0; index < array.length - 1; index++) {
