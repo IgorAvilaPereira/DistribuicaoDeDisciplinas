@@ -435,7 +435,7 @@
 
         function carregar() {            
             if (localStorage.getItem("cargaHorariaPorProfessor") != undefined && localStorage.getItem("vetDisciplina") != undefined) {
-                var resposta = confirm("Há uma redistribuição salva. Deseja restaurá-la (ok=Sim, Cancelar=Não)?");
+                var resposta = confirm("Há uma redistribuição salva.\nDeseja restaurá-la?\n(ok=Sim, Cancelar=Não)?");
                 if (resposta){
                     restaurar();
                     return false;
