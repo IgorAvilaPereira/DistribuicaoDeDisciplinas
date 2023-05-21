@@ -290,8 +290,10 @@
         function editarDisciplina(nome, index){
             var novo_nome = prompt("Novo nome:", vetDisciplina[index].nome);                        
             if (novo_nome == null || novo_nome == "null") return false;
+            
             var creditos = parseInt(prompt("Qtde de creditos:", vetDisciplina[index].creditos));
             if (creditos == null || creditos == "null") return false;
+            
             var duracaoPorCredito = parseInt(prompt("Tempo p/ créditos:", vetDisciplina[index].duracaoPorCredito));
             if (duracaoPorCredito == null || duracaoPorCredito == "null") return false;
             
