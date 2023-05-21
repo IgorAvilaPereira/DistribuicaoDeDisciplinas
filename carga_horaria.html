@@ -433,17 +433,16 @@
             }
         }
 
-        function carregar() {
-            /*
+        function carregar() {            
             if (localStorage.getItem("cargaHorariaPorProfessor") != undefined && localStorage.getItem("vetDisciplina") != undefined) {
-                var resposta = prompt("Há uma redistribuição salva. Deseja restaurá-la", "sim");
-                if (resposta == "sim"){
+                var resposta = confirm("Há uma redistribuição salva. Deseja restaurá-la (ok=Sim, Cancelar=Não)?");
+                if (resposta){
                     restaurar();
+                    return false;
                 } else {
                     apagar();
                 }
-            }
-            */
+            }            
             var html_professor1 = "<option value=''> </option>";
             var array = document.getElementById("vetProfessor").value.split("\n");
             for (let index = 0; index < array.length - 1; index++) {
@@ -460,9 +459,7 @@
                 }
                 vetDisciplina.push(disciplina);
             }
-
             var html = "<h2> Nova Disciplina </h2> Nome:<input type='text' id='novo_nome'><br>Qtde de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (min.) p/ crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
-
             html += "<table id='delegacao' border='1'>";
             var html_professor2 = "";
             for (let index = 0; index < vetDisciplina.length; index++) {
@@ -473,7 +470,6 @@
                 }                
             }
             html += "</table>";
-
             document.getElementById("sistema").innerHTML = html;            
             document.getElementById("formato_professor").style = "display: none;";
             document.getElementById("formato_disciplina").style = "display: none;";
@@ -482,7 +478,7 @@
             document.getElementById("btn_carregar").style = "display: none;";
             document.getElementById("btn_apagar").style = "display: none;";
             document.getElementById("btn_restaurar").style = "display: none;";
-
+            return true;
         }
     </script>
 </head>
