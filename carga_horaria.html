@@ -108,7 +108,7 @@
                             html_professor += "<option value='" + professor + "' " + ((professor == vetDisciplina[index].professor) ? "selected" : "") + ">" + professor + "</option>";
                         }
                         html_professor += "</select>";
-                        html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> " + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
+                        html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> <button onclick=\"editarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> editar  </button> " + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
                     } 
                 }                
                 html += "</table>";
@@ -257,7 +257,7 @@
             atualizarCargaPorProfessor();
         }
 
-        function naoExisteDisciplina(novo_nome){
+        function naoExisteDisciplinaAdicionar(novo_nome){
             if (novo_nome != ""){
                 for (let index = 0; index < vetDisciplina.length; index++) {    
                     if (vetDisciplina[index] != undefined) {
@@ -272,12 +272,49 @@
             
         }
 
+        function naoExisteDisciplinaEditar(novo_nome, posicao){
+            if (novo_nome != ""){
+                for (let index = 0; index < vetDisciplina.length; index++) {    
+                    if (vetDisciplina[index] != undefined && posicao != index) {
+                        if (vetDisciplina[index].nome == novo_nome){
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+
+        function editarDisciplina(nome, index){
+            var novo_nome = prompt("Novo nome:");
+            var creditos = parseInt(prompt("Qtde de creditos:"));
+            var duracaoPorCredito = parseInt(prompt("Tempo p/ créditos:", 50));
+            if (novo_nome != "" && creditos > 0 && duracaoPorCredito > 0 && naoExisteDisciplinaEditar(novo_nome, index)) {         
+                var professorDaDisciplina = ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE");
+                if (professorDaDisciplina !== 'PENDENTE'){
+                    // remover a carga antiga
+                    cargaHorariaPorProfessor[professorDaDisciplina]-= vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;                
+                    // coloca a carga nova
+                    cargaHorariaPorProfessor[professorDaDisciplina]+= vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;                                    
+                }
+                vetDisciplina[index].nome = novo_nome;
+                vetDisciplina[index].creditos = creditos;                    
+                vetDisciplina[index].duracaoPorCredito = duracaoPorCredito;                    
+                vetDisciplina[index].professor = professorDaDisciplina;
+                salvar();   
+            } else {
+                alert("O nome deve ser único com créditos e duração > 0");
+            }        
+        }
+        
         function adicionarNovaDisciplina() {
             var novo_nome = document.getElementById('novo_nome').value;
             var creditos = parseInt(document.getElementById('novo_creditos').value);
             var duracao = parseInt(document.getElementById('novo_duracao').value);
 
-            if (novo_nome != "" && creditos > 0 && duracao > 0 && naoExisteDisciplina(novo_nome)) {
+            if (novo_nome != "" && creditos > 0 && duracao > 0 && naoExisteDisciplinaAdicionar(novo_nome)) {
 
                 let disciplina = {
                     "nome": novo_nome,
@@ -367,7 +404,7 @@
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined){
                     html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                    html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> " + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                    html += "<tr id=\"linha_"+index+"\"> <td> <button onclick=\"removerDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> excluir </button> <button onclick=\"editarDisciplina('"+vetDisciplina[index].nome.trim()+"',"+index+")\"> editar  </button> " + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
                     html_professor2 = "";
                 }                
             }
