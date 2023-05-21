@@ -60,7 +60,7 @@
                     }
                 }                                 
             }    
-            if (qte > 0)  {
+            if (qtde > 0)  {
                 alert(conteudo+"Qtde:"+qtde);
             } else {
                 alert(conteudo);
@@ -211,10 +211,15 @@
                 cargaHorariaPorProfessor[novo_professor] = 0;
                 var table = document.getElementById('tab_carga');
                 var row = table.insertRow(0);
+                
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = novo_professor;
+                var cell3 = row.insertCell(2);
+
+                cell1.innerHTML = "<button onclick=\"visualizarProfessor('"+novo_professor.trim()+"')\"> visualizar  </button> "+novo_professor;
                 cell2.innerHTML = 0;
+                cell3.innerHTML = 0;
+
                 var vetCombo = document.querySelectorAll("select");
                 for (let index = 0; index < vetCombo.length; index++) {
                     var select = vetCombo[index];
@@ -224,6 +229,9 @@
                     select.appendChild(opt);
                 }
                 document.getElementById('novo_professor').value = "";
+                // salvar();
+                // atualizarCargaPorProfessor();
+                computa();
             } else {
                 alert('nome não pode ser em branco e deve ser único');
             }
