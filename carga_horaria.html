@@ -167,13 +167,14 @@
 
         function exportar() {
             var wnd = window.open("about:blank", "", "_blank");
-            var csv = "";
+            var csv = "disciplina;creditos;duracaoPorCredito;professor;<br>";
             var qtde = 0;
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined) {
                     csv += vetDisciplina[index].nome + ";" + vetDisciplina[index].creditos + ";" + vetDisciplina[index].duracaoPorCredito + ";" + ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE") + ";<br>";
                 }
             }
+            csv +="professor;carga;qtde;<br>";
             for (var professor in cargaHorariaPorProfessor) {
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {
