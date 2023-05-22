@@ -50,22 +50,22 @@
             alert("Histórico Removido");
         }
 
-        function visualizarProfessor(professor) {
+        function visualizarProfessor(professor) {            
             var conteudo = "Professor(a):" + professor + "\n";
             var qtde = 0;
             for (let index = 0; index < vetDisciplina.length; index++) {
-                if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined) {
+                if (vetDisciplina[index] != undefined /*&& vetDisciplina[index].professor != undefined*/) {
                     if (vetDisciplina[index].professor.trim() == professor.trim()) {
                         qtde++;
                         conteudo += vetDisciplina[index].nome + "\n";
                     }
                 }
             }
-            if (qtde > 0) {
-                alert(conteudo + "Qtde:" + qtde);
-            } else {
-                alert(conteudo);
-            }
+            // if (qtde > 0) {
+                alert(conteudo + "Qtde:" + qtde+"\nCarga total:"+converter(cargaHorariaPorProfessor[professor]));
+            // } else {
+                // alert(conteudo);
+            // }
         }
 
         function restaurar() {
@@ -281,6 +281,7 @@
                     if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != "") {
                         cargaHorariaPorProfessor[document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim()] +=
                             vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
+                            vetDisciplina[index].professor = document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim();
                     }
                 }
             }
