@@ -21,6 +21,7 @@
             /* font-family: Arial, Helvetica, sans-serif; */
             /* font-family: 'Open Sans'; */
         }
+
         table td,
         table td * {
             vertical-align: top;
@@ -51,7 +52,7 @@
                 if (vetDisciplina[index] != undefined /*&& vetDisciplina[index].professor != undefined*/) {
                     if (vetDisciplina[index].professor.trim() == professor.trim()) {
                         qtde++;
-                        conteudo += "*"+vetDisciplina[index].nome+"\n";
+                        conteudo += "*" + vetDisciplina[index].nome + "\n";
                     }
                 }
             }
@@ -134,6 +135,8 @@
                 document.getElementById("btn_carregar").style = "display: none;";
                 document.getElementById("btn_apagar").style = "display: none;";
                 document.getElementById("btn_restaurar").style = "display: none;";
+
+                // document.getElementById("btn_importar").style = "display: none;";
             } else {
                 alert("Não há histórico salvo");
             }
@@ -174,7 +177,7 @@
                     csv += vetDisciplina[index].nome + ";" + vetDisciplina[index].creditos + ";" + vetDisciplina[index].duracaoPorCredito + ";" + ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE") + ";<br>";
                 }
             }
-            csv +="professor;carga;turmas;<br>";
+            csv += "professor;carga;turmas;<br>";
             for (var professor in cargaHorariaPorProfessor) {
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {
@@ -261,6 +264,24 @@
             // html += "</table><button onclick='apagar()'> Apagar (localStorage) </button>";
             document.getElementById("tabela").innerHTML = html;
             salvar();
+        }
+
+        function computa_importacao() {
+            cargaHorariaPorProfessorAux = [];
+            for (var professor in cargaHorariaPorProfessor) {
+                cargaHorariaPorProfessorAux[professor] = 0;
+            }
+            cargaHorariaPorProfessor = [];
+            cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
+
+            for (let index = 0; index < vetDisciplina.length; index++) {
+                if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined) {
+                    if (vetDisciplina[index].professor != "") {
+                        document.getElementById(index).value = vetDisciplina[index].professor;
+                    }
+                }
+            }
+            atualizarCargaPorProfessor();
         }
 
         function computa() {
@@ -489,13 +510,31 @@
             }
         }
 
-        function importar(){
-            var array = document.getElementById("conteudo").value.split("\n");            
-            var i = 0;
-            if (array.length > 0){
-                aux = array[1].split(";");
-                i = 0;
-                while(aux[0]!='professor' && aux[1]!='carga' && aux[2]!='turmas'){
+        function telaImportar() {
+            document.getElementById("btn_importar").style = "display: none;";
+            document.getElementById("td_importacao").style = "display: '';";
+            document.getElementById("td_importacao").innerHTML += "<button id=\"btn_importar\" onclick=\"importar()\">Importar csv</button>";
+            document.getElementById("textarea_importacao").style = "display: '';";
+            document.getElementById("sistema").style = "display: none;";
+            document.getElementById("formato_professor").style = "display: none;";
+            document.getElementById("formato_disciplina").style = "display: none;";
+            document.getElementById("vetProfessor").style = "display: none;";
+            document.getElementById("vetDisciplina").style = "display: none;";
+            document.getElementById("btn_carregar").style = "display: none;";
+            document.getElementById("btn_apagar").style = "display: none;";
+            document.getElementById("btn_restaurar").style = "display: none;";
+            return true;
+        }
+
+        function importar() {
+            var array = document.getElementById("textarea_importacao").value.split("\n");
+            var html_professor1 = "<option value=''> </option>";
+            if (array.length > 0) {
+                // pulando a primeira linha
+                // aux = array[0].split(";");
+                i = 1;
+                aux = array[i].split(";");
+                while (aux[0] != 'professor' && aux[1] != 'carga' && aux[2] != 'turmas') {
                     let disciplina = {
                         "nome": aux[0].trim(),
                         "creditos": parseInt(aux[1]),
@@ -504,37 +543,53 @@
                     }
                     vetDisciplina.push(disciplina);
                     i++;
+                    aux = array[i].split(";");
                 }
-                i++;              
-                for (let index = i; index < array.length - 1; index++) {
-                    aux = array[i].split(";");             
-                    cargaHorariaPorProfessor[aux[0]] = parseInt(aux[1].split(":")[0])*60 + parseInt(aux[1].split(":")[1]);
+                i++;
+                for (let index = i; index < array.length; index++) {
+                    aux = array[index].split(";");
+                    cargaHorariaPorProfessor[aux[0]] = parseInt(aux[1].split(":")[0]) * 60 + parseInt(aux[1].split(":")[1]);
                     html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                 }
-            }
-            var html_professor1 = "<option value=''> </option>";        
-            var html = "<h2> Nova Disciplina </h2> Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
-            html += "<table id='delegacao' border='1'>";
-            var html_professor2 = "";
-            for (let index = 0; index < vetDisciplina.length; index++) {
-                if (vetDisciplina[index] != undefined) {
-                    html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                    html += "<tr id=\"linha_" + index + "\"> <td> <button onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> editar  </button> <button onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
-                    html_professor2 = "";
+
+                var html = "<h2> Nova Disciplina </h2> Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
+                html += "<table id='delegacao' border='1'>";
+                var html_professor2 = "";
+                for (let index = 0; index < vetDisciplina.length; index++) {
+                    if (vetDisciplina[index] != undefined) {
+                        html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
+                        html += "<tr id=\"linha_" + index + "\"> <td> <button onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> editar  </button> <button onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                        html_professor2 = "";
+                    }
                 }
+                html += "</table>";
+                document.getElementById("sistema").style = "display: '';";
+                document.getElementById("sistema").innerHTML = html;
+                computa_importacao();
+                // document.getElementById("formato_professor").style = "display: none;";
+                // document.getElementById("formato_disciplina").style = "display: none;";
+                // document.getElementById("vetProfessor").style = "display: none;";
+                // document.getElementById("vetDisciplina").style = "display: none;";
+                // document.getElementById("btn_carregar").style = "display: none;";
+                // document.getElementById("btn_apagar").style = "display: none;";
+                // document.getElementById("btn_restaurar").style = "display: none;";
+                document.getElementById("btn_importar").style = "display: none;";
+                document.getElementById("td_importacao").style = "display: none;";
+                document.getElementById("textarea_importacao").style = "display: none;";
+                document.getElementById("formato_professor").style = "display: none;";
+                document.getElementById("formato_disciplina").style = "display: none;";
+                document.getElementById("vetProfessor").style = "display: none;";
+                document.getElementById("vetDisciplina").style = "display: none;";
+                document.getElementById("btn_carregar").style = "display: none;";
+                document.getElementById("btn_apagar").style = "display: none;";
+                document.getElementById("btn_restaurar").style = "display: none;";
+                return true;
+            } else {
+                alert("Problemas com importação!");
+                return false;
             }
-            html += "</table>";
-            document.getElementById("sistema").innerHTML = html;
-            document.getElementById("formato_professor").style = "display: none;";
-            document.getElementById("formato_disciplina").style = "display: none;";
-            document.getElementById("vetProfessor").style = "display: none;";
-            document.getElementById("vetDisciplina").style = "display: none;";
-            document.getElementById("btn_carregar").style = "display: none;";
-            document.getElementById("btn_apagar").style = "display: none;";
-            document.getElementById("btn_restaurar").style = "display: none;";
-            return false;
         }
-        
+
 
         function carregar() {
             if (localStorage.getItem("cargaHorariaPorProfessor") != undefined && localStorage.getItem("vetDisciplina") != undefined) {
@@ -582,6 +637,8 @@
             document.getElementById("btn_carregar").style = "display: none;";
             document.getElementById("btn_apagar").style = "display: none;";
             document.getElementById("btn_restaurar").style = "display: none;";
+            // document.getElementById("btn_importar").style = "display: none;";
+
             return true;
         }
     </script>
@@ -594,6 +651,7 @@
     <button id="btn_restaurar" onclick="restaurar()">Restaurar Histórico</button>
     <button id="btn_apagar" onclick="apagar()">Apagar Histórico</button>
     <button id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
+    <button id="btn_importar" onclick="telaImportar()">Importar csv</button>
     <table>
         <tr>
             <td>
@@ -682,6 +740,10 @@ Desenvolvimento de Sistemas II*,4,60
             </td>
             <td style="width: 20px;"></td>
             <td id="tabela">
+
+            </td>
+            <td id="td_importacao" style="display:none;">
+                <textarea style="display:none;" id="textarea_importacao" cols="30" rows="10"></textarea>
 
             </td>
         </tr>
