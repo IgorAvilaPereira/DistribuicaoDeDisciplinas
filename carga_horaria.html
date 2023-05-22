@@ -56,7 +56,7 @@
                 }
             }
             // if (qtde > 0) {
-            alert(conteudo + "Qtde:" + qtde + "\nCarga:" + converter(cargaHorariaPorProfessor[professor]));
+            alert(conteudo + "Quantidade:" + qtde + "\nCarga:" + converter(cargaHorariaPorProfessor[professor]));
             // } else {
             // alert(conteudo);
             // }
@@ -109,7 +109,7 @@
                 }
                 html = "";
                 // html = "<input type='text' id='novo_nome'><input type='number' id='novo_creditos'><input type='number' id='novo_duracao'><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
-                html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Qtde de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (min.) p/ crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
+                html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
                 html += "<table id='delegacao' border='1'>";
                 var html_professor = "";
                 for (let index = 0; index < vetDisciplina.length; index++) {
@@ -312,7 +312,7 @@
         }
 
         function visualizarDisciplina(nome, index) {
-            var conteudo = vetDisciplina[index].nome + "\nQtde de créditos:" + vetDisciplina[index].creditos + "\n" + "Tempo p/ crédito:" + vetDisciplina[index].duracaoPorCredito + "\nProfessor:" + vetDisciplina[index].professor;
+            var conteudo = vetDisciplina[index].nome + "\nQuantidade de créditos:" + vetDisciplina[index].creditos + "\n" + "Tempo por cada crédito:" + vetDisciplina[index].duracaoPorCredito + "\nProfessor:" + vetDisciplina[index].professor;
             alert(conteudo);
         }
 
@@ -365,10 +365,10 @@
             var novo_nome = prompt("Novo nome:", vetDisciplina[index].nome);
             if (novo_nome === null || novo_nome == "null") return false;
 
-            var creditos = parseInt(prompt("Qtde de creditos:", vetDisciplina[index].creditos));
+            var creditos = parseInt(prompt("Quantidade de creditos:", vetDisciplina[index].creditos));
             if (creditos === null || creditos == "null") return false;
 
-            var duracaoPorCredito = parseInt(prompt("Tempo p/ créditos:", vetDisciplina[index].duracaoPorCredito));
+            var duracaoPorCredito = parseInt(prompt("Tempo (em minutos) por cada créditos:", vetDisciplina[index].duracaoPorCredito));
             if (duracaoPorCredito === null || duracaoPorCredito == "null") return false;
 
             if (novo_nome != "" && creditos > 0 && duracaoPorCredito > 0 && naoExisteDisciplinaEditar(novo_nome, index)) {
@@ -515,7 +515,7 @@
                 }
                 vetDisciplina.push(disciplina);
             }
-            var html = "<h2> Nova Disciplina </h2> Nome:<input type='text' id='novo_nome'><br>Qtde de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (min.) p/ crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
+            var html = "<h2> Nova Disciplina </h2> Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
             html += "<table id='delegacao' border='1'>";
             var html_professor2 = "";
             for (let index = 0; index < vetDisciplina.length; index++) {
