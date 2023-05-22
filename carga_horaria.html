@@ -157,7 +157,6 @@
                 }
             }
             localStorage.setItem("vetDisciplina", JSON.stringify(vetDisciplinaAux));
-
             var cargaHorariaPorProfessorAux = [];
             for (var professor_nome in cargaHorariaPorProfessor) {
                 let professor = {
@@ -272,7 +271,6 @@
             }
             cargaHorariaPorProfessor = [];
             cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
-
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined) {
                     if (vetDisciplina[index].professor != "") {
