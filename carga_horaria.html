@@ -174,7 +174,7 @@
                     csv += vetDisciplina[index].nome + ";" + vetDisciplina[index].creditos + ";" + vetDisciplina[index].duracaoPorCredito + ";" + ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE") + ";<br>";
                 }
             }
-            csv +="professor;carga;qtde;<br>";
+            csv +="professor;carga;turmas;<br>";
             for (var professor in cargaHorariaPorProfessor) {
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {
