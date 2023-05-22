@@ -528,7 +528,8 @@
         }
 
         function importar() {
-            apagar();
+            // apagar();
+            localStorage.clear();
             var array = document.getElementById("textarea_importacao").value.split("\n");
             var html_professor1 = "<option value=''> </option>";
             if (array.length > 0) {
@@ -585,6 +586,7 @@
                 document.getElementById("btn_carregar").style = "display: none;";
                 document.getElementById("btn_apagar").style = "display: none;";
                 document.getElementById("btn_restaurar").style = "display: none;";
+                alert("Importação realizada com sucesso!");
                 return true;
             } else {
                 alert("Problemas com importação!");
