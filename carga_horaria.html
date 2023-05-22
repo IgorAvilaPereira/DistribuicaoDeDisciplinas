@@ -321,14 +321,14 @@
             alert(conteudo);
         }
 
-        function naoExisteProfessorEditar(nome, novo_nome) {            
+        function naoExisteProfessorEditar(nome, novo_nome) {
             // if (novo_nome != "") {
-                for (var professor in cargaHorariaPorProfessor) {
-                    if (professor == novo_nome && nome != novo_nome) {                        
-                        return false;
-                    }
+            for (var professor in cargaHorariaPorProfessor) {
+                if (professor == novo_nome && nome != novo_nome) {
+                    return false;
                 }
-            // }
+            }
+            // }    
             return true;
         }
 
@@ -336,26 +336,31 @@
             var novo_nome = prompt("Novo nome:", nome);
             if (novo_nome != nome) {
                 if (novo_nome != null && novo_nome != undefined && novo_nome != "" && naoExisteProfessorEditar(nome, novo_nome)) {
-                    cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];
+
                     for (let index = 0; index < vetDisciplina.length; index++) {
                         if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor == nome) {
                             vetDisciplina[index].professor = novo_nome;
                         }
                     }
+                    cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];
+
                     for (let index = 0; index < vetDisciplina.length; index++) {
                         if (vetDisciplina[index] != undefined) {
-                            for(let i = 0; i < document.getElementById(index).options.length; i++){
-                                if (document.getElementById(index).options[i].value == nome){                                    
-                                    document.getElementById(index).options[i].value =  novo_nome;
+                            for (let i = 0; i < document.getElementById(index).options.length; i++) {
+                                if (document.getElementById(index).options[i].value == nome) {
+                                    document.getElementById(index).options[i].value = novo_nome;
                                     document.getElementById(index).options[i].text = novo_nome;
                                 }
                             }
                         }
                     }
-                    removerProfessor(nome);                    
+
+                    removerProfessor(nome);
+
                 } else {
                     alert("Nome deve ser único e não deve ser vazio!");
                 }
+
             } else {
                 alert("Nome deve ser único e não deve ser vazio!");
             }
@@ -444,10 +449,23 @@
         }
 
         function removerProfessor(nome) {
+            // for (let index = 0; index < vetDisciplina.length; index++) {
+            //     if (vetDisciplina[index] != undefined) {
+
+            //         if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() == nome.trim()) {
+            //             document.getElementById(index).value = '';
+            //         }
+
+            //     }
+            // }
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined) {
-                    if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() == nome.trim()) {
-                        document.getElementById(index).value = '';
+                    for (let i = 0; i < document.getElementById(index).options.length; i++) {
+                        if (document.getElementById(index).options[i].value == nome) {
+                            document.getElementById(index).remove(i);
+                            // document.getElementById(index).options[i].value =  novo_nome;
+                            // document.getElementById(index).options[i].text = novo_nome;
+                        }
                     }
                 }
             }
