@@ -321,16 +321,15 @@
             alert(conteudo);
         }
 
-        function naoExisteProfessorEditar(nome, novo_nome) {
-            var qtde = 0;
-            if (novo_nome != "") {
+        function naoExisteProfessorEditar(nome, novo_nome) {            
+            // if (novo_nome != "") {
                 for (var professor in cargaHorariaPorProfessor) {
-                    if (professor == novo_nome) {
-                        qtde++;
+                    if (professor == novo_nome && nome != novo_nome) {                        
+                        return false;
                     }
                 }
-            }
-            return (qtde >= 0 && qtde <= 1);
+            // }
+            return true;
         }
 
         function editarProfessor(nome) {
