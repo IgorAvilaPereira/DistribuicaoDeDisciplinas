@@ -128,6 +128,9 @@
                 html += "</table>";
                 document.getElementById("sistema").innerHTML = "";
                 document.getElementById("sistema").innerHTML = html;
+                document.getElementById("btn_importar").style = "display: none;";
+                document.getElementById("td_importacao").style = "display: none;";
+                document.getElementById("textarea_importacao").style = "display: none;";
                 document.getElementById("formato_professor").style = "display: none;";
                 document.getElementById("formato_disciplina").style = "display: none;";
                 document.getElementById("vetProfessor").style = "display: none;";
@@ -135,8 +138,6 @@
                 document.getElementById("btn_carregar").style = "display: none;";
                 document.getElementById("btn_apagar").style = "display: none;";
                 document.getElementById("btn_restaurar").style = "display: none;";
-
-                // document.getElementById("btn_importar").style = "display: none;";
             } else {
                 alert("Não há histórico salvo");
             }
