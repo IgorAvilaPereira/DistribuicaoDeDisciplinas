@@ -42,7 +42,7 @@
 
         function apagar() {
             localStorage.clear();
-            alert("Histórico Removido");
+            alert("Histórico removido!");
         }
 
         function visualizarProfessor(professor) {
@@ -530,6 +530,7 @@
         function importar() {
             // apagar();
             localStorage.clear();
+            
             var array = document.getElementById("textarea_importacao").value.split("\n");
             var html_professor1 = "<option value=''> </option>";
             if (array.length > 0) {
@@ -597,11 +598,11 @@
 
         function carregar() {
             if (localStorage.getItem("cargaHorariaPorProfessor") != undefined && localStorage.getItem("vetDisciplina") != undefined) {
-                var resposta = confirm("Há uma distribuição salva.Deseja restaurá-la?\n(ok=Sim, Cancelar=Não)");
+                var resposta = confirm("Há uma distribuição salva. Deseja restaurá-la?\n(ok=Sim, Cancelar=Não)");
                 if (resposta) {
                     restaurar();
                     return false;
-                } else {
+                } else {                    
                     apagar();
                 }
             }
