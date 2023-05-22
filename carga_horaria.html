@@ -276,8 +276,8 @@
                     if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != "") {
                         cargaHorariaPorProfessor[document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim()] +=
                             vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
-                        vetDisciplina[index].professor = document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim();
                     }
+                    vetDisciplina[index].professor = document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim();
                 }
             }
             atualizarCargaPorProfessor();
