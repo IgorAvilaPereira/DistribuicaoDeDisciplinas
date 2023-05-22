@@ -275,6 +275,8 @@
                 if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined) {
                     if (vetDisciplina[index].professor != "") {
                         document.getElementById(index).value = vetDisciplina[index].professor;
+                        cargaHorariaPorProfessor[document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim()] +=
+                            vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
                     }
                 }
             }
@@ -548,7 +550,8 @@
                 i++;
                 for (let index = i; index < array.length; index++) {
                     aux = array[index].split(";");
-                    cargaHorariaPorProfessor[aux[0]] = parseInt(aux[1].split(":")[0]) * 60 + parseInt(aux[1].split(":")[1]);
+                    // alert(parseInt(aux[1].split(":")[0].trim())* 60 + parseInt(aux[1].split(":")[1].trim()));
+                    // cargaHorariaPorProfessor[aux[0].trim()] = parseInt(aux[1].split(":")[0].trim())* 60 + parseInt(aux[1].split(":")[1].trim());
                     html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                 }
 
