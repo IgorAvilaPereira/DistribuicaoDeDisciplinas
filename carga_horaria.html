@@ -506,6 +506,7 @@
             }
             var array = document.getElementById("vetDisciplina").value.split("\n");
             for (let index = 0; index < array.length - 1; index++) {
+                // tratar problemas de linha mal formatada => pendente
                 var aux = array[index].split(SEPARADOR);
                 let disciplina = {
                     "nome": aux[0].trim(),
