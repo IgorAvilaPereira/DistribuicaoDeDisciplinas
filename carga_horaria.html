@@ -206,8 +206,6 @@
             return false;
         }
 
-
-
         function adicionarNovoProfessor() {
             if (document.getElementById('novo_professor').value != "" && naoExisteProfessor(document.getElementById('novo_professor').value)) {
                 var novo_professor = document.getElementById('novo_professor').value;
@@ -530,11 +528,11 @@
         function importar() {
             // apagar();
             localStorage.clear();
-            
+
             var array = document.getElementById("textarea_importacao").value.split("\n");
             var html_professor1 = "<option value=''> </option>";
             if (array.length > 0) {
-                // pulando a primeira linha
+                // pulando a primeira linha => cabecalho
                 // aux = array[0].split(";");
                 i = 1;
                 aux = array[i].split(";");
@@ -748,7 +746,7 @@ Desenvolvimento de Sistemas II*,4,60
 
             </td>
             <td id="td_importacao" style="display:none;">
-                <textarea style="display:none;" id="textarea_importacao" cols="30" rows="10"></textarea>
+                <textarea style="display:none;" id="textarea_importacao" cols="65" rows="30"></textarea>
 
             </td>
         </tr>
