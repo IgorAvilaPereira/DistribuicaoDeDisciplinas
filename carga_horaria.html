@@ -525,73 +525,78 @@
         }
 
         function importar() {
-            // apagar();
-            localStorage.clear();
-
-            var array = document.getElementById("textarea_importacao").value.split("\n");
-            var html_professor1 = "<option value=''> </option>";
-            if (array.length > 0) {
-                // pulando a primeira linha => cabecalho
-                // aux = array[0].split(";");
-                i = 1;
-                aux = array[i].split(";");
-                while (aux[0] != 'professor' && aux[1] != 'carga' && aux[2] != 'turmas') {
-                    let disciplina = {
-                        "nome": aux[0].trim(),
-                        "creditos": parseInt(aux[1]),
-                        "duracaoPorCredito": parseInt(aux[2]),
-                        "professor": aux[3].trim()
-                    }
-                    vetDisciplina.push(disciplina);
-
-                    cargaHorariaPorProfessor[aux[3].trim()] = 0;
-
-                    i++;
+            try {
+                // apagar();
+                localStorage.clear();
+                var array = document.getElementById("textarea_importacao").value.split("\n");
+                var html_professor1 = "<option value=''> </option>";
+                if (array.length > 0) {
+                    // pulando a primeira linha => cabecalho
+                    // aux = array[0].split(";");
+                    i = 1;
                     aux = array[i].split(";");
-                }
-                i++;
-                for (let index = i; index < array.length; index++) {
-                    aux = array[index].split(";");
-                    cargaHorariaPorProfessor[aux[0].trim()] = 0;
-                    html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
-                }
+                    while (aux[0] != 'professor' && aux[1] != 'carga' && aux[2] != 'turmas') {
+                        let disciplina = {
+                            "nome": aux[0].trim(),
+                            "creditos": parseInt(aux[1]),
+                            "duracaoPorCredito": parseInt(aux[2]),
+                            "professor": aux[3].trim()
+                        }
+                        vetDisciplina.push(disciplina);
 
-                var html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
-                html += "<table id='delegacao' border='1'>";
-                var html_professor2 = "";
-                for (let index = 0; index < vetDisciplina.length; index++) {
-                    if (vetDisciplina[index] != undefined) {
-                        cargaHorariaPorProfessor[vetDisciplina[index].professor] += vetDisciplina[index].duracao * vetDisciplina[index].duracaoPorCredito;
-                        html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                        html += "<tr id=\"linha_" + index + "\"> <td> <button onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> editar  </button> <button onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
-                        html_professor2 = "";
+                        cargaHorariaPorProfessor[aux[3].trim()] = 0;
+
+                        i++;
+                        aux = array[i].split(";");
                     }
+                    i++;
+                    for (let index = i; index < array.length; index++) {
+                        aux = array[index].split(";");
+                        cargaHorariaPorProfessor[aux[0].trim()] = 0;
+                        html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
+                    }
+
+                    var html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
+                    html += "<table id='delegacao' border='1'>";
+                    var html_professor2 = "";
+                    for (let index = 0; index < vetDisciplina.length; index++) {
+                        if (vetDisciplina[index] != undefined) {
+                            cargaHorariaPorProfessor[vetDisciplina[index].professor] += vetDisciplina[index].duracao * vetDisciplina[index].duracaoPorCredito;
+                            html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
+                            html += "<tr id=\"linha_" + index + "\"> <td> <button onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> editar  </button> <button onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                            html_professor2 = "";
+                        }
+                    }
+                    html += "</table>";
+                    document.getElementById("sistema").style = "display: '';";
+                    document.getElementById("sistema").innerHTML = html;
+                    computa_importacao();
+                    // document.getElementById("formato_professor").style = "display: none;";
+                    // document.getElementById("formato_disciplina").style = "display: none;";
+                    // document.getElementById("vetProfessor").style = "display: none;";
+                    // document.getElementById("vetDisciplina").style = "display: none;";
+                    // document.getElementById("btn_carregar").style = "display: none;";
+                    // document.getElementById("btn_apagar").style = "display: none;";
+                    // document.getElementById("btn_restaurar").style = "display: none;";
+                    document.getElementById("btn_importar").style = "display: none;";
+                    document.getElementById("td_importacao").style = "display: none;";
+                    document.getElementById("textarea_importacao").style = "display: none;";
+                    document.getElementById("formato_professor").style = "display: none;";
+                    document.getElementById("formato_disciplina").style = "display: none;";
+                    document.getElementById("vetProfessor").style = "display: none;";
+                    document.getElementById("vetDisciplina").style = "display: none;";
+                    document.getElementById("btn_carregar").style = "display: none;";
+                    document.getElementById("btn_apagar").style = "display: none;";
+                    document.getElementById("btn_restaurar").style = "display: none;";
+                    alert("Importação realizada com sucesso!");
+                    return true;
+                } else {
+                    alert("Problemas com importação!");
+                    return false;
                 }
-                html += "</table>";
-                document.getElementById("sistema").style = "display: '';";
-                document.getElementById("sistema").innerHTML = html;
-                computa_importacao();
-                // document.getElementById("formato_professor").style = "display: none;";
-                // document.getElementById("formato_disciplina").style = "display: none;";
-                // document.getElementById("vetProfessor").style = "display: none;";
-                // document.getElementById("vetDisciplina").style = "display: none;";
-                // document.getElementById("btn_carregar").style = "display: none;";
-                // document.getElementById("btn_apagar").style = "display: none;";
-                // document.getElementById("btn_restaurar").style = "display: none;";
-                document.getElementById("btn_importar").style = "display: none;";
-                document.getElementById("td_importacao").style = "display: none;";
-                document.getElementById("textarea_importacao").style = "display: none;";
-                document.getElementById("formato_professor").style = "display: none;";
-                document.getElementById("formato_disciplina").style = "display: none;";
-                document.getElementById("vetProfessor").style = "display: none;";
-                document.getElementById("vetDisciplina").style = "display: none;";
-                document.getElementById("btn_carregar").style = "display: none;";
-                document.getElementById("btn_apagar").style = "display: none;";
-                document.getElementById("btn_restaurar").style = "display: none;";
-                alert("Importação realizada com sucesso!");
-                return true;
-            } else {
-                alert("Problemas com importação!");
+            }
+            catch (e) {
+                alert("Problemas com importação! Arquivo mal formatado!");
                 return false;
             }
         }
