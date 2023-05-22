@@ -207,6 +207,8 @@
             return false;
         }
 
+      
+
         function adicionarNovoProfessor() {
             if (document.getElementById('novo_professor').value != "" && naoExisteProfessor(document.getElementById('novo_professor').value)) {
                 var novo_professor = document.getElementById('novo_professor').value;
@@ -317,6 +319,46 @@
         function visualizarDisciplina(nome, index) {
             var conteudo = vetDisciplina[index].nome + "\nQtde de créditos:" + vetDisciplina[index].creditos + "\n" + "Tempo p/ crédito:" + vetDisciplina[index].duracaoPorCredito + "\nProfessor:" + vetDisciplina[index].professor;
             alert(conteudo);
+        }
+
+        function naoExisteProfessorEditar(nome) {
+            var qtde = 0;
+            if (nome != "") {
+                for (var professor in cargaHorariaPorProfessor) {
+                    if (professor == nome) {
+                        qtde++;
+                    }
+                }                
+            }
+            return (qtde >= 0 && qtde <= 1);
+        }
+
+        function editarProfessor(nome) {
+            var novo_nome = prompt("Novo nome:", nome);
+            if (novo_nome != "" && naoExisteDisciplinaEditar(nome)){                
+                cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];       
+
+                for (let index = 0; index < vetDisciplina.length; index++) {
+                    if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor == nome) {
+                        vetDisciplina[index].professor = novo_nome;
+                    }
+                }                 
+
+                var vetCombo = document.querySelectorAll("select");
+                for (let index = 0; index < vetCombo.length; index++) {
+                    var vetOption = vetCombo[index].options;
+                    for (let i = 0; i < vetOption.length; i++) {
+                        if (vetOption[i] == nome){
+                            vetOption[i] = novo_nome;
+                        }                        
+                    }
+                }
+                                                               
+                delete cargaHorariaPorProfessor[nome];
+                computa();
+            } else {
+                alert("Nome deve ser único e não deve ser vazio!");
+            }
         }
 
         function editarDisciplina(nome, index) {
