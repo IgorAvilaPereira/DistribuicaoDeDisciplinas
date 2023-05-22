@@ -275,8 +275,7 @@
                 if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined) {
                     if (vetDisciplina[index].professor != "") {
                         document.getElementById(index).value = vetDisciplina[index].professor;
-                        cargaHorariaPorProfessor[document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim()] +=
-                            vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
+                        cargaHorariaPorProfessor[vetDisciplina[index].professor] += vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
                     }
                 }
             }
@@ -544,14 +543,16 @@
                         "professor": aux[3].trim()
                     }
                     vetDisciplina.push(disciplina);
+
+                    cargaHorariaPorProfessor[aux[3].trim()] = 0;
+
                     i++;
                     aux = array[i].split(";");
                 }
                 i++;
                 for (let index = i; index < array.length; index++) {
                     aux = array[index].split(";");
-                    // alert(parseInt(aux[1].split(":")[0].trim())* 60 + parseInt(aux[1].split(":")[1].trim()));
-                    // cargaHorariaPorProfessor[aux[0].trim()] = parseInt(aux[1].split(":")[0].trim())* 60 + parseInt(aux[1].split(":")[1].trim());
+                    cargaHorariaPorProfessor[aux[0].trim()] = 0;
                     html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                 }
 
@@ -560,6 +561,7 @@
                 var html_professor2 = "";
                 for (let index = 0; index < vetDisciplina.length; index++) {
                     if (vetDisciplina[index] != undefined) {
+                        cargaHorariaPorProfessor[vetDisciplina[index].professor] += vetDisciplina[index].duracao * vetDisciplina[index].duracaoPorCredito;
                         html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
                         html += "<tr id=\"linha_" + index + "\"> <td> <button onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> editar  </button> <button onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> visualizar  </button>" + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
                         html_professor2 = "";
@@ -601,7 +603,7 @@
                 if (resposta) {
                     restaurar();
                     return false;
-                } else {                    
+                } else {
                     apagar();
                 }
             }
@@ -634,6 +636,9 @@
             }
             html += "</table>";
             document.getElementById("sistema").innerHTML = html;
+            document.getElementById("btn_importar").style = "display: none;";
+            document.getElementById("td_importacao").style = "display: none;";
+            document.getElementById("textarea_importacao").style = "display: none;";
             document.getElementById("formato_professor").style = "display: none;";
             document.getElementById("formato_disciplina").style = "display: none;";
             document.getElementById("vetProfessor").style = "display: none;";
@@ -641,7 +646,6 @@
             document.getElementById("btn_carregar").style = "display: none;";
             document.getElementById("btn_apagar").style = "display: none;";
             document.getElementById("btn_restaurar").style = "display: none;";
-            // document.getElementById("btn_importar").style = "display: none;";
 
             return true;
         }
