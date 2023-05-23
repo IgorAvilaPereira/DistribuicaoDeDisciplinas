@@ -434,12 +434,15 @@
 
                 var table = document.getElementById('delegacao');
                 var rowCount = table.rows.length;
+                
                 var row = table.insertRow(rowCount);
                 row.id = "linha_" + parseInt(vetDisciplina.length - 1);
                 // var row = table.insertRow(0);
+                
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 cell1.innerHTML = "<button onclick=\"removerDisciplina('" + disciplina.nome + "'," + parseInt(vetDisciplina.length - 1) + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + disciplina.nome + "'," + parseInt(vetDisciplina.length - 1) + ")\"> editar </button> <button onclick=\"visualizarDisciplina('" + disciplina.nome + "'," + parseInt(vetDisciplina.length - 1) + ")\"> visualizar </button> " + disciplina.nome;
+                
                 var html_professor = "<select id='" + parseInt(vetDisciplina.length - 1) + "' onchange='computa()'> ";
                 html_professor += "<option value=''> </option>";
                 for (var professor in cargaHorariaPorProfessor) {
