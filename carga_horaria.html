@@ -403,6 +403,9 @@
                 vetDisciplina[index].creditos = creditos;
                 vetDisciplina[index].duracaoPorCredito = duracaoPorCredito;
                 vetDisciplina[index].professor = professorDaDisciplina;
+
+                var row =  document.getElementById("linha_" + index);                
+                row.cells[0].innerHTML = "<button onclick=\"removerDisciplina('" + novo_nome.trim() + "'," + index + ")\"> excluir </button> <button onclick=\"editarDisciplina('" + novo_nome.trim() + "'," + index + ")\"> editar  </button> <button onclick=\"visualizarDisciplina('" + novo_nome.trim() + "'," + index + ")\"> visualizar  </button>" + novo_nome;
                 computa();
                 return true;
             } else {
