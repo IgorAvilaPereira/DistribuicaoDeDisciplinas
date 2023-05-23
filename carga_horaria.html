@@ -470,29 +470,23 @@
         }
 
         function removerProfessor(nome) {
-            // for (let index = 0; index < vetDisciplina.length; index++) {
-            //     if (vetDisciplina[index] != undefined) {
-
-            //         if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() == nome.trim()) {
-            //             document.getElementById(index).value = '';
-            //         }
-
-            //     }
-            // }
-            for (let index = 0; index < vetDisciplina.length; index++) {
-                if (vetDisciplina[index] != undefined) {
-                    for (let i = 0; i < document.getElementById(index).options.length; i++) {
-                        if (document.getElementById(index).options[i].value == nome) {
-                            document.getElementById(index).remove(i);
-                            // document.getElementById(index).options[i].value =  novo_nome;
-                            // document.getElementById(index).options[i].text = novo_nome;
+            var resposta = confirm("Você tem certeza?");
+            if (resposta == true) {
+                for (let index = 0; index < vetDisciplina.length; index++) {
+                    if (vetDisciplina[index] != undefined) {
+                        for (let i = 0; i < document.getElementById(index).options.length; i++) {
+                            if (document.getElementById(index).options[i].value == nome) {
+                                document.getElementById(index).remove(i);
+                                // document.getElementById(index).options[i].value =  novo_nome;
+                                // document.getElementById(index).options[i].text = novo_nome;
+                            }
                         }
                     }
                 }
+                // deleteRow("linha_"+nome); 
+                delete cargaHorariaPorProfessor[nome];
+                computa();
             }
-            // deleteRow("linha_"+nome); 
-            delete cargaHorariaPorProfessor[nome];
-            computa();
         }
 
         function removerDisciplina(nome, index) {
