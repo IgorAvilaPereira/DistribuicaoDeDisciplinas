@@ -548,7 +548,8 @@
                             "professor": ((aux[3].trim() === 'PENDENTE' || aux[3].trim() === '') ? undefined : aux[3].trim())
                         }
                         vetDisciplina.push(disciplina);
-                        if (disciplina.professor != undefined) {
+                        // acho que isso nem precisa....
+                        if (disciplina.professor != undefined) {                            
                             cargaHorariaPorProfessor[disciplina.professor.trim()] = 0;
                         }
                         i++;
@@ -557,6 +558,7 @@
                     i++;
                     for (let index = i; index < array.length; index++) {
                         aux = array[index].split(";");
+                        // ja que tem isso aqui....
                         cargaHorariaPorProfessor[aux[0].trim()] = 0;
                         html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                     }
