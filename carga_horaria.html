@@ -291,11 +291,12 @@
         function computa() {
             cargaHorariaPorProfessorAux = [];
             for (var professor in cargaHorariaPorProfessor) {
-                cargaHorariaPorProfessorAux[professor] = 0;
+                if (professor != 'undefined' && professor != undefined){
+                    cargaHorariaPorProfessorAux[professor] = 0;
+                }
             }
             cargaHorariaPorProfessor = [];
             cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
-
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined && document.getElementById(index) != undefined) {
                     if (document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != "") {
@@ -553,15 +554,12 @@
                         i++;
                         aux = array[i].split(";");
                     }
-                    // alert("ok");
                     i++;
                     for (let index = i; index < array.length; index++) {
                         aux = array[index].split(";");
                         cargaHorariaPorProfessor[aux[0].trim()] = 0;
                         html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                     }
-
-
                     var html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><br><button onclick='adicionarNovaDisciplina()'>Adicionar</button><br><br>";
                     html += "<table id='delegacao' border='1'>";
                     var html_professor2 = "";
@@ -573,8 +571,7 @@
                             html_professor2 = "";
                         }
                     }
-                    html += "</table>";
-                    
+                    html += "</table>";                    
                     document.getElementById("sistema").style = "display: '';";
                     document.getElementById("sistema").innerHTML = html;
                     computa_importacao();
