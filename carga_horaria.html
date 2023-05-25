@@ -291,9 +291,9 @@
         function computa() {
             cargaHorariaPorProfessorAux = [];
             for (var professor in cargaHorariaPorProfessor) {
-                if (professor != 'undefined' && professor != undefined){
-                    cargaHorariaPorProfessorAux[professor] = 0;
-                }
+                // if (professor != 'undefined' && professor != undefined){
+                cargaHorariaPorProfessorAux[professor] = 0;
+                // }
             }
             cargaHorariaPorProfessor = [];
             cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
