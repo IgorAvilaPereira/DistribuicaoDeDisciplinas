@@ -533,8 +533,6 @@
 
         function importar() {
             try {
-                // apagar();
-                localStorage.clear();
                 var array = document.getElementById("textarea_importacao").value.trim().split("\n");
                 var html_professor1 = "<option value=''> </option>";
                 if (array.length > 0) {
@@ -573,7 +571,8 @@
                             html_professor2 = "";
                         }
                     }
-                    html += "</table>";                    
+                    html += "</table>";     
+                    localStorage.clear();               
                     document.getElementById("sistema").style = "display: '';";
                     document.getElementById("sistema").innerHTML = html;
                     computa_importacao();
