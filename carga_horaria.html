@@ -535,7 +535,7 @@
             try {
                 // apagar();
                 localStorage.clear();
-                var array = document.getElementById("textarea_importacao").value.split("\n");
+                var array = document.getElementById("textarea_importacao").value.trim().split("\n");
                 var html_professor1 = "<option value=''> </option>";
                 if (array.length > 0) {
                     i = 1;
