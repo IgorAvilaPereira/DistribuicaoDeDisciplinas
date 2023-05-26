@@ -277,11 +277,9 @@
             cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined  && vetDisciplina[index].professor != 'undefined') {
-                    if (vetDisciplina[index].professor.trim() != "") {
-                        // alert(vetDisciplina[index].professor.trim());
+                    if (vetDisciplina[index].professor.trim() != "") {                        
                         document.getElementById(index).value = vetDisciplina[index].professor.trim();
                         cargaHorariaPorProfessor[vetDisciplina[index].professor.trim()] += vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
-                        // alert(vetDisciplina[index].professor.trim());
                     }
                 }
             }
