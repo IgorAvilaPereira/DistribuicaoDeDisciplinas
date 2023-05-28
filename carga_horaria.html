@@ -564,7 +564,7 @@
         function telaImportar() {
             document.getElementById("btn_importar").style = "display: none;";
             document.getElementById("td_importacao").style = "display: '';";
-            document.getElementById("td_importacao").innerHTML += "<br><button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button><button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
+            document.getElementById("td_importacao").innerHTML += "<button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button> <button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
             document.getElementById("textarea_importacao").style = "display: '';";
             document.getElementById("sistema").style = "display: none;";
             document.getElementById("formato_professor").style = "display: none;";
@@ -711,13 +711,31 @@
     </script>
 </head>
 
-<body>
-    <h1><img src='logo.jpg' width="40px" height="40px"> Distribuição de Disciplinas</h1>
 
-    <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar</button>
-    <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
-    <button class="btn btn-warning" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
-    <button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>
+
+<body>
+
+
+
+    <header class="d-flex flex-wrap justify-content-left py-3 mb-4 border-bottom">
+        <h1><img src='logo.jpg' width="40px" height="40px"> Distribuição de Disciplinas </h1>
+        &nbsp;&nbsp;
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar</button>
+            </li>
+            &nbsp;
+            <li class="nav-item">
+                <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>                
+            </li>
+            &nbsp;
+            <li class="nav-item">
+                <button class="btn btn-warning" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
+            </li>
+            &nbsp;
+            <li class="nav-item"><button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button></li>
+        </ul>
+    </header>
     <table style="margin-top: 10px;">
         <tr>
             <td>
