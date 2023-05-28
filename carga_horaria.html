@@ -666,28 +666,41 @@
                     apagar();
                 }
             }
-            var html_professor1 = "<option value=''> </option>";
-            var array = document.getElementById("vetProfessor").value.split("\n");
-            for (let index = 0; index < array.length; index++) {
-                cargaHorariaPorProfessor[array[index]] = 0;
-                html_professor1 += "<option value='" + array[index] + "'>" + array[index] + "</option>";
-            }
-            var array = document.getElementById("vetDisciplina").value.split("\n");
-            for (let index = 0; index < array.length; index++) {
-                // tratar problemas de linha mal formatada => pendente
-                var aux = array[index].split(SEPARADOR);
-                if (aux.length == 3){
-                    let disciplina = {
-                        "nome": aux[0].trim(),
-                        "creditos": parseInt(aux[1]),
-                        "duracaoPorCredito": parseInt(aux[2])
+            if (document.getElementById("vetProfessor").value.trim() != "") {
+                var html_professor1 = "<option value=''> </option>";
+                var array = document.getElementById("vetProfessor").value.split("\n");
+                for (let index = 0; index < array.length; index++) {
+                    if (array[index] != "") {
+                        cargaHorariaPorProfessor[array[index]] = 0;
+                        html_professor1 += "<option value='" + array[index] + "'>" + array[index] + "</option>";
                     }
-                    vetDisciplina.push(disciplina);
-                } else {
-                    alert("Problema de carregamento: linha "+(index+1)+" mal formatada!");
-                    apagar();
-                    return false;
                 }
+            } else {
+                alert("[PROBLEMA] É preciso que exista pelo menos um professor! Refaça o carregamento!");
+                return false;
+            }
+
+            if (document.getElementById("vetDisciplina").value.trim() != "") {
+                var array = document.getElementById("vetDisciplina").value.split("\n");
+                for (let index = 0; index < array.length; index++) {
+                    // tratar problemas de linha mal formatada => pendente
+                    var aux = array[index].split(SEPARADOR);
+                    if (aux.length == 3){
+                        let disciplina = {
+                            "nome": aux[0].trim(),
+                            "creditos": parseInt(aux[1]),
+                            "duracaoPorCredito": parseInt(aux[2])
+                        }
+                        vetDisciplina.push(disciplina);
+                    } else {
+                        alert("Problema de carregamento: linha "+(index+1)+" mal formatada!");
+                        apagar();
+                        return false;
+                    }
+                }
+            } else {
+                alert("[PROBLEMA] É preciso que exista pelo menos uma disciplina! Refaça o carregamento!");
+                return false;
             }
             var html = "<h2> Nova Disciplina </h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
             // var html = "<h2> Nova Disciplina </h2><table border='0'><tr><td>Nome:</td><td><input type='text' id='novo_nome'><td></tr><td>Quantidade de Créditos:</td><td><input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'></td><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
