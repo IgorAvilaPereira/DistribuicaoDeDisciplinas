@@ -7,12 +7,20 @@
     <title>Distribuição de Disciplinas</title>
     <link rel="icon" href="favicon.ico">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'> 
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-    
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 
     <style>
         * {
@@ -25,8 +33,6 @@
         table td * {
             vertical-align: top;
         }
-
-
     </style>
     <script type="text/javascript">
         const SEPARADOR = ",";
@@ -78,7 +84,7 @@
                 html += "<table border='0' class='table table-striped' id='tab_carga' border='1'>";
                 for (var professor in cargaHorariaPorProfessor) {
                     total = cargaHorariaPorProfessor[professor];
-                    html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\"> <button class='btn btn-warning' onclick=\"removerProfessor('" + professor.trim() + "')\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button> <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(total) + "</td>";
+                    html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\"> <button class='btn btn-warning' onclick=\"editarProfessor('" + professor.trim() + "')\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button> <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(total) + "</td>";
                     qtde = 0;
                     for (let index = 0; index < JSON.parse(localStorage.getItem("vetDisciplina")).length; index++) {
                         if (JSON.parse(localStorage.getItem("vetDisciplina"))[index] != undefined) {
@@ -125,7 +131,7 @@
                             html_professor += "<option value='" + professor + "' " + ((professor == vetDisciplina[index].professor) ? "selected" : "") + ">" + professor + "</option>";
                         }
                         html_professor += "</select>";
-                        html += "<tr id=\"linha_" + index + "\"> <td> <button class='btn btn-danger' onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Ver  </button>  " +vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
+                        html += "<tr id=\"linha_" + index + "\"> <td> <button class='btn btn-danger' onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Ver  </button>  " + vetDisciplina[index].nome + "</td><td>" + html_professor + "</td></tr>";
                     }
                 }
                 html += "</table>";
@@ -219,7 +225,7 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
 
-                cell1.innerHTML = "<button class='btn btn-warning' onclick=\"removerProfessor('" + novo_professor.trim() + "')\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarProfessor('" + novo_professor.trim() + "')\"> Ver  </button>  <button class='btn btn-danger' onclick=\"removerProfessor('" + novo_professor.trim() + "')\"> Excluir  </button> " + novo_professor;
+                cell1.innerHTML = "<button class='btn btn-warning' onclick=\"editarProfessor('" + novo_professor.trim() + "')\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarProfessor('" + novo_professor.trim() + "')\"> Ver  </button>  <button class='btn btn-danger' onclick=\"removerProfessor('" + novo_professor.trim() + "')\"> Excluir  </button> " + novo_professor;
                 cell2.innerHTML = 0;
                 cell3.innerHTML = 0;
 
@@ -247,7 +253,7 @@
             html += "<table border='0' class='table table-striped' id='tab_carga' border='1'>";
             for (var professor in cargaHorariaPorProfessor) {
                 var total = cargaHorariaPorProfessor[professor];
-                html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\">  <button class='btn btn-warning' onclick=\"removerProfessor('" + professor.trim() + "')\"> Editar  </button>   <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button>  <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(total) + "</td>";
+                html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\">  <button class='btn btn-warning' onclick=\"editarProfessor('" + professor.trim() + "')\"> Editar  </button>   <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button>  <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(total) + "</td>";
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {
                     if (vetDisciplina[index] != undefined && document.getElementById(index) != undefined) {
@@ -270,16 +276,16 @@
         function computa_importacao() {
             cargaHorariaPorProfessorAux = [];
             for (var professor in cargaHorariaPorProfessor) {
-                if (professor != 'undefined' && professor != undefined){
+                if (professor != 'undefined' && professor != undefined) {
                     cargaHorariaPorProfessorAux[professor] = 0;
                 }
             }
-            
+
             cargaHorariaPorProfessor = [];
             cargaHorariaPorProfessor = cargaHorariaPorProfessorAux;
             for (let index = 0; index < vetDisciplina.length; index++) {
-                if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined  && vetDisciplina[index].professor != 'undefined') {
-                    if (vetDisciplina[index].professor.trim() != "") {                        
+                if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor != 'undefined') {
+                    if (vetDisciplina[index].professor.trim() != "") {
                         document.getElementById(index).value = vetDisciplina[index].professor.trim();
                         cargaHorariaPorProfessor[vetDisciplina[index].professor.trim()] += vetDisciplina[index].creditos * vetDisciplina[index].duracaoPorCredito;
                     }
@@ -356,36 +362,35 @@
 
         function editarProfessor(nome) {
             var novo_nome = prompt("Novo nome:", nome);
-            if (novo_nome != nome) {
-                if (novo_nome != null && novo_nome != undefined && novo_nome != "" && naoExisteProfessorEditar(nome, novo_nome)) {
-
-                    for (let index = 0; index < vetDisciplina.length; index++) {
-                        if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor == nome) {
-                            vetDisciplina[index].professor = novo_nome;
+            //if (novo_nome != null && novo_nome != "") {
+                if (novo_nome != nome) {
+                    if (novo_nome != null && novo_nome != undefined && novo_nome != "" && naoExisteProfessorEditar(nome, novo_nome)) {
+                        for (let index = 0; index < vetDisciplina.length; index++) {
+                            if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor == nome) {
+                                vetDisciplina[index].professor = novo_nome;
+                            }
                         }
-                    }
-                    cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];
-
-                    for (let index = 0; index < vetDisciplina.length; index++) {
-                        if (vetDisciplina[index] != undefined) {
-                            for (let i = 0; i < document.getElementById(index).options.length; i++) {
-                                if (document.getElementById(index).options[i].value == nome) {
-                                    document.getElementById(index).options[i].value = novo_nome;
-                                    document.getElementById(index).options[i].text = novo_nome;
+                        cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];
+                        for (let index = 0; index < vetDisciplina.length; index++) {
+                            if (vetDisciplina[index] != undefined) {
+                                for (let i = 0; i < document.getElementById(index).options.length; i++) {
+                                    if (document.getElementById(index).options[i].value == nome) {
+                                        document.getElementById(index).options[i].value = novo_nome;
+                                        document.getElementById(index).options[i].text = novo_nome;
+                                    }
                                 }
                             }
                         }
+                        removerProfessor(nome);
+                    } else {
+                        alert("Nome deve ser único e não deve ser vazio!");
                     }
-
-                    removerProfessor(nome);
-
                 } else {
                     alert("Nome deve ser único e não deve ser vazio!");
                 }
-
-            } else {
+            /*} else {
                 alert("Nome deve ser único e não deve ser vazio!");
-            }
+            }*/
         }
 
         function editarDisciplina(nome, index) {
@@ -411,8 +416,8 @@
                 vetDisciplina[index].duracaoPorCredito = duracaoPorCredito;
                 vetDisciplina[index].professor = professorDaDisciplina;
 
-                var row =  document.getElementById("linha_" + index);                
-                row.cells[0].innerHTML = "<button class='btn btn-danger' onclick=\"removerDisciplina('" + novo_nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + novo_nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + novo_nome.trim() + "'," + index + ")\"> Ver  </button>  " +novo_nome;
+                var row = document.getElementById("linha_" + index);
+                row.cells[0].innerHTML = "<button class='btn btn-danger' onclick=\"removerDisciplina('" + novo_nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + novo_nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + novo_nome.trim() + "'," + index + ")\"> Ver  </button>  " + novo_nome;
                 computa();
                 return true;
             } else {
@@ -441,15 +446,15 @@
 
                 var table = document.getElementById('delegacao');
                 var rowCount = table.rows.length;
-                
+
                 var row = table.insertRow(rowCount);
                 row.id = "linha_" + parseInt(vetDisciplina.length - 1);
                 // var row = table.insertRow(0);
-                
+
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 cell1.innerHTML = "<button class='btn btn-danger' onclick=\"removerDisciplina('" + disciplina.nome + "'," + parseInt(vetDisciplina.length - 1) + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + disciplina.nome + "'," + parseInt(vetDisciplina.length - 1) + ")\"> editar </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + disciplina.nome + "'," + parseInt(vetDisciplina.length - 1) + ")\"> visualizar </button> " + disciplina.nome;
-                
+
                 var html_professor = "<select id='" + parseInt(vetDisciplina.length - 1) + "' onchange='computa()'> ";
                 html_professor += "<option value=''> </option>";
                 for (var professor in cargaHorariaPorProfessor) {
@@ -477,7 +482,7 @@
         }
 
         function removerProfessor(nome) {
-            var resposta = confirm("Você desejar excluir "+nome+" ?");
+            var resposta = confirm("Você desejar excluir " + nome + " ?");
             if (resposta == true) {
                 for (let index = 0; index < vetDisciplina.length; index++) {
                     if (vetDisciplina[index] != undefined) {
@@ -497,7 +502,7 @@
         }
 
         function removerDisciplina(nome, index) {
-            var resposta = confirm("Você deseja excluir "+nome+" ?");
+            var resposta = confirm("Você deseja excluir " + nome + " ?");
             if (resposta == true) {
                 var professorDaDisciplina = ((document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() != '') ? document.getElementById(index).options[document.getElementById(index).selectedIndex].value.trim() : "PENDENTE");
                 if (professorDaDisciplina !== 'PENDENTE') {
@@ -547,7 +552,7 @@
                         }
                         vetDisciplina.push(disciplina);
                         // acho que isso nem precisa....
-                        if (disciplina.professor != undefined) {                            
+                        if (disciplina.professor != undefined) {
                             cargaHorariaPorProfessor[disciplina.professor.trim()] = 0;
                         }
                         i++;
@@ -568,12 +573,12 @@
                         if (vetDisciplina[index] != undefined) {
                             cargaHorariaPorProfessor[vetDisciplina[index].professor] += vetDisciplina[index].duracao * vetDisciplina[index].duracaoPorCredito;
                             html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                            html += "<tr id=\"linha_" + index + "\"> <td> <button class='btn btn-danger' onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Ver  </button>  " +vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                            html += "<tr id=\"linha_" + index + "\"> <td> <button class='btn btn-danger' onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Ver  </button>  " + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
                             html_professor2 = "";
                         }
                     }
-                    html += "</table>";     
-                    localStorage.clear();               
+                    html += "</table>";
+                    localStorage.clear();
                     document.getElementById("sistema").style = "display: '';";
                     document.getElementById("sistema").innerHTML = html;
                     computa_importacao();
@@ -643,7 +648,7 @@
             for (let index = 0; index < vetDisciplina.length; index++) {
                 if (vetDisciplina[index] != undefined) {
                     html_professor2 = "<select id='" + index + "' onchange='computa()'>" + html_professor1 + "</select>";
-                    html += "<tr id=\"linha_" + index + "\"> <td> <button class='btn btn-danger' onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Ver  </button>  " +vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
+                    html += "<tr id=\"linha_" + index + "\"> <td> <button class='btn btn-danger' onclick=\"removerDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Excluir </button> <button class='btn btn-warning' onclick=\"editarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarDisciplina('" + vetDisciplina[index].nome.trim() + "'," + index + ")\"> Ver  </button>  " + vetDisciplina[index].nome + "</td><td>" + html_professor2 + "</td></tr>";
                     html_professor2 = "";
                 }
             }
@@ -666,14 +671,12 @@
 </head>
 
 <body>
-    <h1><img src='logo.jpg' width="40px" height="40px"> Distribuição de Disciplinas</h1> 
+    <h1><img src='logo.jpg' width="40px" height="40px"> Distribuição de Disciplinas</h1>
     <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar</button>
-    <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>   
+    <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
     <button class="btn btn-warning" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
-    <button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>    
-    <h2 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)</h2>
-    <h2 id="formato_professor">Formato Professor: Usar nomes únicos</h2>        
-    <table>
+    <button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>
+    <table style="margin-top: 10px;">
         <tr>
             <td>
                 <!-- <h2 id="label_professores">Professores:</h2> -->
@@ -765,6 +768,10 @@ Desenvolvimento de Sistemas II*,4,60
             </td>
             <td id="td_importacao" style="display:none;">
                 <textarea style="display:none;" id="textarea_importacao" cols="65" rows="30"></textarea>
+            </td>
+            <td>
+                <h3 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)</h3>
+                <h3 id="formato_professor">Formato Professor: nomes únicos</h3>
             </td>
         </tr>
         <!-- <tr>
