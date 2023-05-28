@@ -668,7 +668,7 @@
             }
             if (document.getElementById("vetProfessor").value.trim() != "") {
                 var html_professor1 = "<option value=''> </option>";
-                var array = document.getElementById("vetProfessor").value.split("\n");
+                var array = document.getElementById("vetProfessor").value.trim().split("\n");
                 for (let index = 0; index < array.length; index++) {
                     if (array[index] != "") {
                         cargaHorariaPorProfessor[array[index]] = 0;
@@ -681,7 +681,7 @@
             }
 
             if (document.getElementById("vetDisciplina").value.trim() != "") {
-                var array = document.getElementById("vetDisciplina").value.split("\n");
+                var array = document.getElementById("vetDisciplina").value.trim().split("\n");
                 for (let index = 0; index < array.length; index++) {
                     // tratar problemas de linha mal formatada => pendente
                     var aux = array[index].split(SEPARADOR);
