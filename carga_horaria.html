@@ -636,7 +636,7 @@
                 }
                 vetDisciplina.push(disciplina);
             }
-            var html = "<h2> Nova Disciplina </h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-sucess' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table>";
+            var html = "<h2> Nova Disciplina </h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table>";
             // var html = "<h2> Nova Disciplina </h2><table border='0'><tr><td>Nome:</td><td><input type='text' id='novo_nome'><td></tr><td>Quantidade de Créditos:</td><td><input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'></td><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
             html += "<table border='0' class='table table-striped' id='delegacao' border='1'>";
             var html_professor2 = "";
@@ -666,7 +666,7 @@
 </head>
 
 <body>
-    <h1>Distribuição de Disciplinas</h1> 
+    <h1><img src='logo.jpg' width="40px" height="40px"> Distribuição de Disciplinas</h1> 
     <button class="btn btn-success" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
     <button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>
     <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
