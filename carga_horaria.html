@@ -5,6 +5,7 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Distribuição de Disciplinas</title>
+    <link rel="icon" href="favicon.ico">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'> 
     
@@ -665,15 +666,13 @@
 </head>
 
 <body>
-    <h1>Distribuição de Disciplinas</h1>
-    <h2 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)<br></h2>
-    <h2 id="formato_professor">Formato Professor: Usar nomes únicos<br></h2>    
+    <h1>Distribuição de Disciplinas</h1> 
     <button class="btn btn-success" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
     <button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>
     <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
-    <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
-    <br>
-    <br>
+    <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>    
+    <h2 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)</h2>
+    <h2 id="formato_professor">Formato Professor: Usar nomes únicos</h2>        
     <table>
         <tr>
             <td>
