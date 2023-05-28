@@ -29,6 +29,12 @@
             font-family: 'Open Sans';
         }
 
+        /* 
+        .field_set{
+  border-color: black;
+  border-style: solid;
+} */
+
         table td,
         table td * {
             vertical-align: top;
@@ -558,7 +564,7 @@
         function telaImportar() {
             document.getElementById("btn_importar").style = "display: none;";
             document.getElementById("td_importacao").style = "display: '';";
-            document.getElementById("td_importacao").innerHTML += "<button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button><button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
+            document.getElementById("td_importacao").innerHTML += "<br><button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button><button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
             document.getElementById("textarea_importacao").style = "display: '';";
             document.getElementById("sistema").style = "display: none;";
             document.getElementById("formato_professor").style = "display: none;";
@@ -601,7 +607,7 @@
                         html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                     }
                     // var html = "<h2> Nova Disciplina </h2><table border='0'><tr><td>Nome:</td><td><input type='text' id='novo_nome'><td></tr><td>Quantidade de Créditos:</td><td><input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'></td><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
-                    var html = "<h2> Nova Disciplina </h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
+                    var html = " <h2> Nova Disciplina</h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
                     html += "<table border='0' class='table table-striped' id='delegacao' border='1'>";
                     var html_professor2 = "";
                     for (let index = 0; index < vetDisciplina.length; index++) {
@@ -707,6 +713,7 @@
 
 <body>
     <h1><img src='logo.jpg' width="40px" height="40px"> Distribuição de Disciplinas</h1>
+
     <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar</button>
     <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
     <button class="btn btn-warning" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
@@ -715,7 +722,7 @@
         <tr>
             <td>
                 <!-- <h2 id="label_professores">Professores:</h2> -->
-                <textarea id="vetProfessor" rows="50" cols="15">
+                <textarea id="vetProfessor" rows="25" cols="15">
 betito
 bolivar
 cibele
@@ -741,7 +748,7 @@ OUTROS
             </td>
             <td>
                 <!-- <h2 id="label_disciplinas>Disciplinas:</h2> -->
-                <textarea id="vetDisciplina" rows="50" cols="55">
+                <textarea id="vetDisciplina" rows="25" cols="50">
 Fundamentos da Computação,4,50
 Fundamentos da Interação Humano computador,2,50
 Lógica de Programação,6,50
@@ -802,7 +809,7 @@ Desenvolvimento de Sistemas II*,4,60
 
             </td>
             <td id="td_importacao" style="display:none;">
-                <textarea style="display:none;" id="textarea_importacao" cols="65" rows="30"></textarea>
+                <textarea style="display:none;" id="textarea_importacao" rows="25" cols="50"></textarea>
             </td>
             <td>
                 <h3 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)</h3>
