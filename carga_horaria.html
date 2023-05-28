@@ -564,7 +564,7 @@
         function telaImportar() {
             document.getElementById("btn_importar").style = "display: none;";
             document.getElementById("td_importacao").style = "display: '';";
-            document.getElementById("td_importacao").innerHTML += "<button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button> <button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
+            document.getElementById("td_importacao").innerHTML += "<button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar <i> arquivo.csv </i> </button> <button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
             document.getElementById("textarea_importacao").style = "display: '';";
             document.getElementById("sistema").style = "display: none;";
             document.getElementById("formato_professor").style = "display: none;";
@@ -745,17 +745,15 @@
             <li class="nav-item">
                 <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar</button>
             </li>
+            <!-- &nbsp;
+            <li class="nav-item"><button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar Histórico</button></li> -->
             &nbsp;
             <li class="nav-item">
-                <button class="btn btn-warning" id="btn_restaurar" onclick="restaurar()">Restaurar
-                    (localStorage)</button>
+                <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar <i>arquivo.csv</i></button>
             </li>
             &nbsp;
-            <li class="nav-item"><button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar
-                    (localStorage)</button></li>
-
             <li class="nav-item">
-                <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
+                <button class="btn btn-warning" id="btn_restaurar" onclick="restaurar()">Restaurar Histórico</button>
             </li>
         </ul>
     </header>
