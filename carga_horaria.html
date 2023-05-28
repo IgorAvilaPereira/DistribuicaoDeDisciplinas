@@ -602,9 +602,11 @@
                     i++;
                     for (let index = i; index < array.length; index++) {
                         aux = array[index].split(";");
-                        // ja que tem isso aqui....
-                        cargaHorariaPorProfessor[aux[0].trim()] = 0;
-                        html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
+                        if (aux[0].trim() != ""){
+                            // ja que tem isso aqui..   ..
+                            cargaHorariaPorProfessor[aux[0].trim()] = 0;
+                            html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
+                        }
                     }
                     // var html = "<h2> Nova Disciplina </h2><table border='0'><tr><td>Nome:</td><td><input type='text' id='novo_nome'><td></tr><td>Quantidade de Créditos:</td><td><input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'></td><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
                     var html = " <h2> Nova Disciplina</h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
