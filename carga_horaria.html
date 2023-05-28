@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Carga Horária</title>
+    <title>Distribuição de Disciplinas</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'> 
     
@@ -517,7 +517,7 @@
         function telaImportar() {
             document.getElementById("btn_importar").style = "display: none;";
             document.getElementById("td_importacao").style = "display: '';";
-            document.getElementById("td_importacao").innerHTML += "<button class='btn btn-success' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button><button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
+            document.getElementById("td_importacao").innerHTML += "<button class='btn btn-info' id=\"btn_importar\" onclick=\"importar()\">Importar csv</button><button class='btn btn-default' onclick=\"location.reload();\">voltar</button>";
             document.getElementById("textarea_importacao").style = "display: '';";
             document.getElementById("sistema").style = "display: none;";
             document.getElementById("formato_professor").style = "display: none;";
@@ -669,9 +669,9 @@
     <h2 id="formato_disciplina">Formato Disciplina: nome,créditos,duração por crédito (em minutos)<br></h2>
     <h2 id="formato_professor">Formato Professor: Usar nomes únicos<br></h2>    
     <button class="btn btn-success" id="btn_restaurar" onclick="restaurar()">Restaurar (localStorage)</button>
-    <button class="btn btn-success" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>
+    <button class="btn btn-danger" id="btn_apagar" onclick="apagar()">Apagar (localStorage)</button>
     <button class="btn btn-success" id="btn_carregar" onclick="carregar()">Carregar (Professores e Disciplinas)</button>
-    <button class="btn btn-success" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
+    <button class="btn btn-info" id="btn_importar" onclick="telaImportar()">Importar CSV</button>
     <br>
     <br>
     <table>
