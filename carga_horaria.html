@@ -363,31 +363,46 @@
         function editarProfessor(nome) {
             var novo_nome = prompt("Novo nome:", nome);
             //if (novo_nome != null && novo_nome != "") {
-                if (novo_nome != nome) {
-                    if (novo_nome != null && novo_nome != undefined && novo_nome != "" && naoExisteProfessorEditar(nome, novo_nome)) {
-                        for (let index = 0; index < vetDisciplina.length; index++) {
-                            if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor == nome) {
-                                vetDisciplina[index].professor = novo_nome;
-                            }
+            if (novo_nome != nome) {
+                if (novo_nome != null && novo_nome != undefined && novo_nome != "" && naoExisteProfessorEditar(nome, novo_nome)) {
+                    for (let index = 0; index < vetDisciplina.length; index++) {
+                        if (vetDisciplina[index] != undefined && vetDisciplina[index].professor != undefined && vetDisciplina[index].professor == nome) {
+                            vetDisciplina[index].professor = novo_nome;
                         }
-                        cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];
-                        for (let index = 0; index < vetDisciplina.length; index++) {
-                            if (vetDisciplina[index] != undefined) {
-                                for (let i = 0; i < document.getElementById(index).options.length; i++) {
-                                    if (document.getElementById(index).options[i].value == nome) {
-                                        document.getElementById(index).options[i].value = novo_nome;
-                                        document.getElementById(index).options[i].text = novo_nome;
-                                    }
+                    }
+                    cargaHorariaPorProfessor[novo_nome] = cargaHorariaPorProfessor[nome];
+                    for (let index = 0; index < vetDisciplina.length; index++) {
+                        if (vetDisciplina[index] != undefined) {
+                            for (let i = 0; i < document.getElementById(index).options.length; i++) {
+                                if (document.getElementById(index).options[i].value == nome) {
+                                    document.getElementById(index).options[i].value = novo_nome;
+                                    document.getElementById(index).options[i].text = novo_nome;
                                 }
                             }
                         }
-                        removerProfessor(nome);
-                    } else {
-                        alert("Nome deve ser único e não deve ser vazio!");
                     }
+                    // removendo o nome "antigo"
+                    // removerProfessorEditar(nome);                    
+                    for (let index = 0; index < vetDisciplina.length; index++) {
+                        if (vetDisciplina[index] != undefined) {
+                            for (let i = 0; i < document.getElementById(index).options.length; i++) {
+                                if (document.getElementById(index).options[i].value == nome) {
+                                    document.getElementById(index).remove(i);
+                                    // document.getElementById(index).options[i].value =  novo_nome;
+                                    // document.getElementById(index).options[i].text = novo_nome;
+                                }
+                            }
+                        }
+                    }
+                    // deleteRow("linha_"+nome); 
+                    delete cargaHorariaPorProfessor[nome];
+                    computa();
                 } else {
                     alert("Nome deve ser único e não deve ser vazio!");
                 }
+            } else {
+                alert("Nome deve ser único e não deve ser vazio!");
+            }
             /*} else {
                 alert("Nome deve ser único e não deve ser vazio!");
             }*/
@@ -480,6 +495,26 @@
                 alert("Please Enter Correct Row Id!");
             }*/
         }
+
+        // function removerProfessorEditar(nome) {
+        //     // var resposta = confirm("Você desejar excluir " + nome + " ?");
+        //     // if (resposta == true) {
+        //         for (let index = 0; index < vetDisciplina.length; index++) {
+        //             if (vetDisciplina[index] != undefined) {
+        //                 for (let i = 0; i < document.getElementById(index).options.length; i++) {
+        //                     if (document.getElementById(index).options[i].value == nome) {
+        //                         document.getElementById(index).remove(i);
+        //                         // document.getElementById(index).options[i].value =  novo_nome;
+        //                         // document.getElementById(index).options[i].text = novo_nome;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         // deleteRow("linha_"+nome); 
+        //         delete cargaHorariaPorProfessor[nome];
+        //         computa();
+        //     // }
+        // }
 
         function removerProfessor(nome) {
             var resposta = confirm("Você desejar excluir " + nome + " ?");
