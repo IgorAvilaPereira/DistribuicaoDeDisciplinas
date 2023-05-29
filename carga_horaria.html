@@ -123,8 +123,8 @@
                 }
                 html = "";
                 // html = "<input type='text' id='novo_nome'><input type='number' id='novo_creditos'><input type='number' id='novo_duracao'><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
-                // html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
-                var html = "<h2> Nova Disciplina </h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
+                // html = "<h2> Nova Disciplina </h2>Nome:<input type='text' id='novo_nome'><br>Quantidade de Créditos:<input type='number' id='novo_creditos' min='0' max='10'><br>Duração de cada crédito (<i>em minutos</i>):<input type='number' id='novo_duracao' value='50'><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button><br>";
+                var html = "<h2> Nova Disciplina </h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Duração de cada crédito (<i>em minutos</i>): </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
 
                 html += "<table border='0' class='table table-striped' id='delegacao' border='1'>";
                 var html_professor = "";
@@ -351,7 +351,7 @@
         }
 
         function visualizarDisciplina(nome, index) {
-            var conteudo = vetDisciplina[index].nome + "\n* Quantidade de créditos:" + vetDisciplina[index].creditos + "\n" + "* Tempo por cada crédito:" + vetDisciplina[index].duracaoPorCredito + " minutos\n* Professor:" + vetDisciplina[index].professor;
+            var conteudo = vetDisciplina[index].nome + "\n* Quantidade de créditos:" + vetDisciplina[index].creditos + "\n" + "* Duração de cada crédito:" + vetDisciplina[index].duracaoPorCredito + " minutos\n* Professor:" + vetDisciplina[index].professor;
             alert(conteudo);
         }
 
@@ -608,7 +608,7 @@
                             html_professor1 += "<option value='" + aux[0] + "'>" + aux[0] + "</option>";
                         }
                     }
-                    // var html = "<h2> Nova Disciplina </h2><table border='0'><tr><td>Nome:</td><td><input type='text' id='novo_nome'><td></tr><td>Quantidade de Créditos:</td><td><input type='number' id='novo_creditos' min='0' max='10' ><br>Tempo (em minutos) por cada crédito:<input type='number' id='novo_duracao' value='50'></td><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
+                    // var html = "<h2> Nova Disciplina </h2><table border='0'><tr><td>Nome:</td><td><input type='text' id='novo_nome'><td></tr><td>Quantidade de Créditos:</td><td><input type='number' id='novo_creditos' min='0' max='10' ><br>Duração de cada crédito (<i>em minutos</i>):<input type='number' id='novo_duracao' value='50'></td><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
                     var html = " <h2> Nova Disciplina</h2> <table> <tr> <td> Nome: </td> <td> <input type='text' id='novo_nome'></td> </tr> <tr> <td> Quantidade de Créditos: </td> <td> <input type='number' id='novo_creditos' min='0' max='10' ></td></tr> <tr> <td> Tempo (em minutos) por cada crédito: </td> <td> <input type='number' id='novo_duracao' value='50'></td></tr><tr><td><button class='btn btn-success' onclick='adicionarNovaDisciplina()'>Adicionar</button></td></tr></table><br>";
                     html += "<table border='0' class='table table-striped' id='delegacao' border='1'>";
                     var html_professor2 = "";
