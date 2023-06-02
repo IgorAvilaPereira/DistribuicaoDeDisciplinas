@@ -442,7 +442,7 @@
         }
 
         function adicionarNovaDisciplina() {
-            var novo_nome = document.getElementById('novo_nome').value;
+            var novo_nome = document.getElementById('novo_nome').value.trim();
             var creditos = parseInt(document.getElementById('novo_creditos').value);
             var duracao = parseInt(document.getElementById('novo_duracao').value);
 
