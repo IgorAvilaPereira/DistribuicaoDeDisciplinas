@@ -345,7 +345,7 @@
         }
 
         function visualizarDisciplina(nome, index) {
-            var conteudo = vetDisciplina[index].nome + "\n* Quantidade de créditos:" + vetDisciplina[index].creditos + "\n" + "* Duração de cada crédito:" + vetDisciplina[index].duracaoPorCredito + " minutos\n* Professor:" + vetDisciplina[index].professor;
+            var conteudo = vetDisciplina[index].nome + "\n* Quantidade de créditos:" + vetDisciplina[index].creditos + "\n" + "* Duração de cada crédito:" + vetDisciplina[index].duracaoPorCredito + " minutos\n* Professor:" + ((vetDisciplina[index].professor != undefined && vetDisciplina[index].professor != "undefined" && vetDisciplina[index].professor != " " && vetDisciplina[index].professor != "") ? vetDisciplina[index].professor : "PENDENTE");
             alert(conteudo);
         }
 
