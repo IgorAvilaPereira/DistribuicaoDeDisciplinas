@@ -4,6 +4,12 @@ Software implementado em JavaScript para auxiliar na distribuição de disciplin
 
 ---
 
+### 🔗 Visualização online
+
+Você pode visualizar o software em funcionamento através deste link: [Visualizar aplicação](https://htmlpreview.github.io/?https://github.com/IgorAvilaPereira/DistribuicaoDeDisciplinas/blob/main/carga_horaria.html).
+
+---
+
 ### 🛠️ Funcionalidades principais
 
 * **Carregamento de listas**: Permite importar listas de professores e disciplinas, incluindo informações como nome, quantidade de créditos e minutos por crédito.
@@ -38,8 +44,4 @@ Para utilizar o software:
 
 ---
 
-### 🔗 Visualização online
 
-Você pode visualizar o software em funcionamento através deste link: [Visualizar aplicação](https://htmlpreview.github.io/?https://github.com/IgorAvilaPereira/DistribuicaoDeDisciplinas/blob/main/carga_horaria.html).
-
----
