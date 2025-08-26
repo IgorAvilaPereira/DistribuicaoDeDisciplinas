@@ -39,6 +39,7 @@
         var cargaHorariaPorProfessor = [];
         var vetDisciplina = [];
 
+        /*
         function converter(minutos) {
             const horas = parseInt(minutos / 60);
             const min = parseInt(minutos % 60);
@@ -46,7 +47,14 @@
             const textoMinutos = (`00${min}`).slice(-2);
             return `${textoHoras}:${textoMinutos}`;
         }
-
+        */
+        
+        function converter(totalMinutos) {  
+          const horas = Math.floor(totalMinutos / 60);
+          const minutos = totalMinutos % 60;
+          return `${horas}:${minutos}`;
+        }
+        
         function apagar() {
             localStorage.clear();
             alert("Histórico removido!");
@@ -64,7 +72,7 @@
                 }
             }
             // if (qtde > 0) {
-            alert(conteudo + "Turmas: " + qtde + "\nCarga: " + converter(cargaHorariaPorProfessor[professor]));
+            alert(conteudo + "Turmas: " + qtde + "\nCarga: " + converter(parseInt(cargaHorariaPorProfessor[professor]));
             // } else {
             // alert(conteudo);
             // }
@@ -84,7 +92,7 @@
                 html += "<table border='0' class='table table-striped' id='tab_carga' border='1'>";
                 for (var professor in cargaHorariaPorProfessor) {
                     total = cargaHorariaPorProfessor[professor];
-                    html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\"> <button class='btn btn-warning' onclick=\"editarProfessor('" + professor.trim() + "')\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button> <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(total) + "</td>";
+                    html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\"> <button class='btn btn-warning' onclick=\"editarProfessor('" + professor.trim() + "')\"> Editar  </button> <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button> <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(parseInt(total)) + "</td>";
                     qtde = 0;
                     for (let index = 0; index < JSON.parse(localStorage.getItem("vetDisciplina")).length; index++) {
                         if (JSON.parse(localStorage.getItem("vetDisciplina"))[index] != undefined) {
@@ -196,7 +204,7 @@
                         }
                     }
                 }
-                csv += professor + ";" + converter(cargaHorariaPorProfessor[professor]) + ";" + qtde + ";<br>";
+                csv += professor + ";" + converter(parseInt(cargaHorariaPorProfessor[professor])) + ";" + qtde + ";<br>";
             }
             wnd.document.write(csv);
             computa();
@@ -253,7 +261,7 @@
             html += "<table border='0' class='table table-striped' id='tab_carga' border='1'>";
             for (var professor in cargaHorariaPorProfessor) {
                 var total = cargaHorariaPorProfessor[professor];
-                html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\">  <button class='btn btn-warning' onclick=\"editarProfessor('" + professor.trim() + "')\"> Editar  </button>   <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button>  <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(total) + "</td>";
+                html += "<tr> <td id=\"linha_" + professor.replace(" ", "_") + "\">  <button class='btn btn-warning' onclick=\"editarProfessor('" + professor.trim() + "')\"> Editar  </button>   <button class='btn btn-primary' onclick=\"visualizarProfessor('" + professor.trim() + "')\"> Ver  </button>  <button class='btn btn-danger' onclick=\"removerProfessor('" + professor.trim() + "')\"> Excluir  </button> " + professor + "</td><td>" + converter(parseInt(total)) + "</td>";
                 qtde = 0;
                 for (let index = 0; index < vetDisciplina.length; index++) {
                     if (vetDisciplina[index] != undefined && document.getElementById(index) != undefined) {
