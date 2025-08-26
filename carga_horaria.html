@@ -255,6 +255,45 @@
 
         }
 
+        function estatisticasCargaHorariaProfessor() {            
+            var maior = 0;
+            var maiorProfessor = [];                      
+            for (var professor in cargaHorariaPorProfessor) {
+                var total = cargaHorariaPorProfessor[professor.trim()];
+                if (total >= maior) {
+                    if (total != maior) {
+                        maior = total;
+                        maiorProfessor = [];
+                        maiorProfessor.push(professor.trim());    
+                    } else {
+                        maior = total;                        
+                        maiorProfessor.push(professor.trim());    
+                    }
+                }
+            }
+            var menor = maior;
+            var menorProfessor = [];
+            for (var professor in cargaHorariaPorProfessor) {
+                var total = cargaHorariaPorProfessor[professor.trim()];
+                if (total <= menor) {
+                    if (total != menor) {
+                        menor = total;
+                        menorProfessor = [];
+                        menorProfessor.push(professor.trim());     
+                    } else {
+                        menor = total;                        
+                        menorProfessor.push(professor.trim());    
+                    }
+                }
+            }
+
+            document.getElementById("tabela").innerHTML+= "<ul>";    
+            document.getElementById("tabela").innerHTML+= "<li> Maior Carga:"+maiorProfessor.join(",") +":"+converter(maior)+"</li>";
+            document.getElementById("tabela").innerHTML+= "<li> Menor Carga:"+menorProfessor.join(",") +":"+converter(menor)+"</li>";
+            document.getElementById("tabela").innerHTML+= "</ul>";    
+
+        }
+
         function atualizarCargaPorProfessor() {
             var html = "<h2> Novo Professor </h2> Nome: <input type='text' id='novo_professor'><br><br><button class='btn btn-success' onclick='adicionarNovoProfessor()'>Adicionar</button><br><br><br><br>";
             var qtde = 0;
@@ -278,6 +317,7 @@
             // html += "</table><button class='btn btn-default' onclick='restaurar()'> Restaurar (localStorage) </button>";
             // html += "</table><button class='btn btn-default' onclick='apagar()'> Apagar (localStorage) </button>";
             document.getElementById("tabela").innerHTML = html;
+            estatisticasCargaHorariaProfessor();
             salvar();
         }
 
